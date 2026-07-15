@@ -1,0 +1,45 @@
+/* src/app/globals.scss */
+
+:root {
+  /* پالت رنگی مینیمال و اولترا-پریمیوم */
+  --bg-color: #fdfdfd;       /* پس‌زمینه‌ی کلی (سفید/کرم بسیار ملایم) */
+  --surface-color: #ffffff;  /* پس‌زمینه‌ی کانتینر اصلی */
+  --accent-color: #c8a377;   /* رنگ تأکیدی و لوکس برند */
+  --text-primary: #222222;
+  
+  /* سایه نرم برای القای حس تمیزی و شناور بودن */
+  --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.04);
+  
+  /* عرض ثابت */
+  --max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'IRANSans', sans-serif; /* فایل‌های فونت ایران‌سنس باید در پروژه لود شوند */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* کانتینر اصلی شبیه‌ساز */
+.simulator-container {
+  width: 100%;
+  max-width: var(--max-width);
+  height: 100vh; /* تمام‌صفحه اما محدود در عرض */
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden; /* جلوگیری از اسکرول هنگام اجرای انیمیشن‌های Swipe */
+  display: flex;
+  flex-direction: column;
+}

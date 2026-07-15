@@ -1,0 +1,82 @@
+/* styles/Stage1.module.scss */
+
+.stageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #777;
+  margin-bottom: 4rem;
+  font-weight: 300;
+}
+
+/* محفظه نگهدارنده سطل و در */
+.bucketWrapper {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* استایل موقت برای بدنه سطل (تا زمان جایگذاری PNG) */
+.bucket {
+  width: 220px;
+  height: 200px;
+  background-color: var(--surface-color);
+  border-radius: 10px 10px 40px 40px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid #f0f0f0;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+/* استایل درِ سطل با قابلیت گرفتن و کشیدن */
+.lid {
+  width: 240px;
+  height: 50px;
+  background-color: var(--surface-color);
+  border-radius: 25px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f0f0f0;
+  position: absolute;
+  top: 10px;
+  z-index: 2;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lid:active {
+  cursor: grabbing;
+}
+
+.swipeHint {
+  color: var(--accent-color); /* رنگ c8a377 */
+  font-size: 0.9rem;
+  font-weight: bold;
+  pointer-events: none;
+}

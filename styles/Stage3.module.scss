@@ -1,0 +1,106 @@
+/* styles/Stage3.module.scss */
+
+.stageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #777;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+/* سطل خمیر */
+.bucketWrapper {
+  position: relative;
+  width: 220px;
+  height: 200px;
+  background-color: var(--accent-color); /* خمیر الان کاملاً هم‌رنگ برند شده */
+  border-radius: 10px 10px 40px 40px;
+  border: 1px solid #f0f0f0;
+  box-shadow: inset 0 -10px 30px rgba(0,0,0,0.1), var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ابزار هم‌زن (Draggable) */
+.mixerTool {
+  width: 60px;
+  height: 120px;
+  background-color: var(--surface-color);
+  border: 2px solid #e0e0e0;
+  border-radius: 30px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #999;
+  cursor: grab;
+  z-index: 10;
+}
+
+.mixerTool:active {
+  cursor: grabbing;
+}
+
+/* نوار پیشرفتِ هم‌زدن */
+.progressContainer {
+  width: 220px;
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: var(--text-primary);
+  transition: width 0.1s linear;
+}
+
+/* تایمر شیک و قفل صفحه */
+.timerOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(253, 253, 253, 0.85); /* پس‌زمینه نیمه‌شفاف روشن */
+  backdrop-filter: blur(8px); /* افکت تار شدن پس‌زمینه */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.timerNumber {
+  font-size: 6rem;
+  font-weight: 900;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.timerText {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}

@@ -1,65 +1,73 @@
-import Image from "next/image";
+// app/page.tsx
+'use client';
 
-export default function Home() {
+import { useSimulatorStore } from '@/store/useSimulatorStore';
+import { AnimatePresence, motion } from 'framer-motion';
+import Stage1_Unbox from '@/components/stages/Stage1_Unbox';
+import Stage2_Water from '@/components/stages/Stage2_Water'; // اضافه شد
+import Stage3_Mix from '@/components/stages/Stage3_Mix';
+import Stage4_Apply from '@/components/stages/Stage4_Apply';
+
+export default function SimulatorPage() {
+  const currentStage = useSimulatorStore((state) => state.currentStage);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <AnimatePresence mode="wait">
+        
+        {/* پرده اول */}
+        {currentStage === 1 && (
+          <motion.div
+            key="stage1"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            style={{ width: '100%', height: '100%', position: 'absolute' }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <Stage1_Unbox />
+          </motion.div>
+        )}
+
+        {/* پرده دوم */}
+        {currentStage === 2 && (
+          <motion.div
+            key="stage2"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            style={{ width: '100%', height: '100%', position: 'absolute' }}
           >
-            Documentation
-          </a>
-        </div>
-      </main>
+            <Stage2_Water />
+          </motion.div>
+        )}
+
+        {/* پرده سوم */}
+        {currentStage === 3 && (
+          <motion.div
+            key="stage3"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            style={{ width: '100%', height: '100%', position: 'absolute' }}
+          >
+            <Stage3_Mix />
+          </motion.div>
+        )}
+
+        {/* پرده چهارم */}
+        {currentStage === 4 && (
+          <motion.div
+            key="stage4"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            style={{ width: '100%', height: '100%', position: 'absolute' }}
+          >
+            <Stage4_Apply />
+          </motion.div>
+        )}
+
+      </AnimatePresence>
     </div>
   );
 }

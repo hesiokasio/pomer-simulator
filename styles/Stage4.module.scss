@@ -1,0 +1,67 @@
+/* styles/Stage4.module.scss */
+
+.stageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #777;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* محفظه کاشی */
+.tileWrapper {
+  position: relative;
+  width: 280px;
+  height: 350px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  /* یک پس‌زمینه موقت که حس کاشی تمیز با بندکشی سفید رو میده */
+  background: linear-gradient(to right, #fcfcfc 45%, #ffffff 50%, #fcfcfc 55%);
+  cursor: crosshair;
+}
+
+/* بوم نقاشی که درز کثیف رو روش میکشیم */
+.scratchCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transition: opacity 0.5s ease;
+}
+
+/* دکمه خرید اولترا-پریمیوم */
+.buyButton {
+  margin-top: 3rem;
+  background-color: var(--accent-color);
+  color: #fff;
+  font-family: 'IRANSans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(200, 163, 119, 0.4);
+  cursor: pointer;
+  outline: none;
+}
