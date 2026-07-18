@@ -1,73 +1,16 @@
 // app/page.tsx
-'use client';
+import styles from '@/styles/Landing.module.scss';
+import HeroSection from '@/app/components/HeroSection';
+// کامپوننت‌های بعدی هم اینجا ایمپورت میشن
 
-import { useSimulatorStore } from '@/store/useSimulatorStore';
-import { AnimatePresence, motion } from 'framer-motion';
-import Stage1_Unbox from '@/components/stages/Stage1_Unbox';
-import Stage2_Water from '@/components/stages/Stage2_Water'; // اضافه شد
-import Stage3_Mix from '@/components/stages/Stage3_Mix';
-import Stage4_Apply from '@/components/stages/Stage4_Apply';
-
-export default function SimulatorPage() {
-  const currentStage = useSimulatorStore((state) => state.currentStage);
-
+export default function LandingPage() {
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-      <AnimatePresence mode="wait">
-        
-        {/* پرده اول */}
-        {currentStage === 1 && (
-          <motion.div
-            key="stage1"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            style={{ width: '100%', height: '100%', position: 'absolute' }}
-          >
-            <Stage1_Unbox />
-          </motion.div>
-        )}
-
-        {/* پرده دوم */}
-        {currentStage === 2 && (
-          <motion.div
-            key="stage2"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            style={{ width: '100%', height: '100%', position: 'absolute' }}
-          >
-            <Stage2_Water />
-          </motion.div>
-        )}
-
-        {/* پرده سوم */}
-        {currentStage === 3 && (
-          <motion.div
-            key="stage3"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            style={{ width: '100%', height: '100%', position: 'absolute' }}
-          >
-            <Stage3_Mix />
-          </motion.div>
-        )}
-
-        {/* پرده چهارم */}
-        {currentStage === 4 && (
-          <motion.div
-            key="stage4"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            style={{ width: '100%', height: '100%', position: 'absolute' }}
-          >
-            <Stage4_Apply />
-          </motion.div>
-        )}
-
-      </AnimatePresence>
+    <div className={styles.landingContainer}>
+      <HeroSection />
+      
+      {/* <FeaturesSection /> */}
+      {/* <SpecsSection /> */}
+      {/* <CtaSection /> */}
     </div>
   );
 }

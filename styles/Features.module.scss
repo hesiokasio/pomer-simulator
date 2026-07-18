@@ -1,0 +1,137 @@
+/* styles/Features.module.scss */
+@import './variables';
+
+.featuresSection {
+  width: 100%;
+  padding: 8rem $padding-x;
+  background-color: $bg-light;
+  position: relative;
+}
+
+.container {
+  max-width: $max-width-layout;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 5rem;
+  
+  .subtitle {
+    display: inline-block;
+    color: $primary-color;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-right: 2rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 2px;
+      background-color: $primary-color;
+    }
+  }
+
+  .title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: $text-dark;
+    line-height: 1.2;
+    max-width: 600px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+}
+
+.featureCard {
+  background: #fff;
+  border-radius: 24px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+
+  /* افکت هاور لوکس */
+  &:hover {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.04);
+    transform: translateY(-5px);
+    
+    .iconWrapper {
+      background: $primary-color;
+      color: #fff;
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* استایل‌دهی نامتقارن برای شکستن ساختار قدیمی */
+.featureCard:nth-child(1) { grid-column: span 8; }
+.featureCard:nth-child(2) { grid-column: span 4; }
+.featureCard:nth-child(3) { grid-column: span 4; }
+.featureCard:nth-child(4) { grid-column: span 8; }
+
+.cardNumber {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  font-size: 5rem;
+  font-weight: 900;
+  color: rgba(200, 163, 119, 0.08); /* عدد بزرگ و محو در پس‌زمینه */
+  line-height: 1;
+  pointer-events: none;
+}
+
+.iconWrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: rgba(200, 163, 119, 0.1);
+  color: $primary-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  transition: all 0.4s ease;
+
+  svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 1.5;
+  }
+}
+
+.cardTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: $text-dark;
+  margin-bottom: 1rem;
+}
+
+.cardDesc {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: $text-gray;
+  font-weight: 300;
+}
+
+/* ریسپانسیو برای موبایل و تبلت */
+@media (max-width: 992px) {
+  .featureCard:nth-child(n) {
+    grid-column: span 12; /* در موبایل همه زیر هم قرار می‌گیرن */
+  }
+  
+  .header .title {
+    font-size: 2.5rem;
+  }
+}
