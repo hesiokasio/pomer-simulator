@@ -8,60 +8,152 @@
   height: 100%;
   text-align: center;
   padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.textWrap {
+  margin-bottom: 2.5rem;
 }
 
 .title {
   font-size: 1.8rem;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  color: var(--text-primary, #333);
+  margin-bottom: 0.8rem;
   font-weight: 700;
 }
 
 .subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #777;
-  margin-bottom: 2rem;
   font-weight: 300;
   line-height: 1.6;
 }
 
-/* محفظه کاشی */
+/* =========================================
+   محدوده کاشی‌ها و اجرای خمیر
+========================================= */
 .tileWrapper {
   position: relative;
-  width: 280px;
-  height: 350px;
-  border-radius: 20px;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid #f0f0f0;
-  overflow: hidden;
-  /* یک پس‌زمینه موقت که حس کاشی تمیز با بندکشی سفید رو میده */
-  background: linear-gradient(to right, #fcfcfc 45%, #ffffff 50%, #fcfcfc 55%);
-  cursor: crosshair;
+  width: 300px;
+  height: 300px;
+  margin-bottom: 1.5rem;
 }
 
-/* بوم نقاشی که درز کثیف رو روش میکشیم */
-.scratchCanvas {
+/* این کانتینر حرکات موس/تاچ را می‌گیرد */
+.interactionArea {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 2;
-  transition: opacity 0.5s ease;
+  background: #e6e6e6; /* رنگ درزهای خالی (تیره) */
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    inset 0 4px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  touch-action: none; /* جلوگیری از اسکرول شدن صفحه در موبایل هنگام کشیدن */
+  cursor: crosshair;
 }
 
-/* دکمه خرید اولترا-پریمیوم */
-.buyButton {
-  margin-top: 3rem;
-  background-color: var(--accent-color);
-  color: #fff;
-  font-family: 'IRANSans', sans-serif;
-  font-size: 1.2rem;
+/* بوم نقاشی (لایه زیرین) */
+.drawingCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; 
+}
+
+/* شبکه ۹ تایی کاشی‌ها (لایه رویی بوم) */
+.tilesGrid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 14px; /* ضخامت دقیق درز کاشی */
+  padding: 14px; /* حاشیه دور کار */
+  z-index: 2;
+  pointer-events: none; /* بسیار مهم: اجازه می‌دهد تاچ از کاشی رد شود و به Canvas برسد */
+}
+
+/* خود کاشی‌ها */
+.tile {
+  background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+  border-radius: 6px;
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* دست راهنما */
+.handIndicator {
+  position: absolute;
+  top: 15px; 
+  color: #c7c7c7;
+  pointer-events: none;
+  z-index: 20; 
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25)); 
+}
+
+/* پاپ‌آپ موفقیت در انتهای کار */
+.successOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.checkIcon {
+  width: 60px;
+  height: 60px;
+  background: #c8a377;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 20px rgba(200, 163, 119, 0.3);
+}
+
+.successText {
+  font-size: 1.4rem;
   font-weight: bold;
-  padding: 1rem 3rem;
-  border: none;
-  border-radius: 50px;
-  box-shadow: 0 10px 25px rgba(200, 163, 119, 0.4);
-  cursor: pointer;
-  outline: none;
+  color: #333;
+}
+
+/* =========================================
+   نوار پیشرفت
+========================================= */
+.progressContainer {
+  width: 220px;
+  height: 8px;
+  background-color: rgba(0,0,0,0.05);
+  border-radius: 4px;
+  margin-top: 1rem;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.progressBar {
+  height: 100%;
+  transition: width 0.2s ease-out;
+  border-radius: 4px;
 }

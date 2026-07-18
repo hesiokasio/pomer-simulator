@@ -9,11 +9,16 @@
   text-align: center;
   padding: 2rem;
   position: relative;
+  overflow: hidden;
+}
+
+.textWrap {
+  margin-bottom: 2rem;
 }
 
 .title {
   font-size: 1.8rem;
-  color: var(--text-primary);
+  color: var(--text-primary, #333);
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
@@ -21,70 +26,263 @@
 .subtitle {
   font-size: 1.1rem;
   color: #777;
-  margin-bottom: 3rem;
   font-weight: 300;
 }
 
-/* سطل خمیر */
+/* =========================================
+   قوطی و محتویات آن (دقیقاً ست شده با مراحل قبل)
+========================================= */
 .bucketWrapper {
   position: relative;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 1rem;
+  margin-top: 3.5rem; /* فضای کافی برای تایمر شناور */
+}
+
+/* ... بقیه کدهای قوطی، آب و هم‌زن ثابت بمانند ... */
+/* کلاس‌های timerOverlay, timerNumber و timerText را کلا پاک کن */
+
+/* =========================================
+   تایمر شناور (Badge)
+========================================= */
+.timerBadge {
+  position: absolute;
+  top: -55px; /* قرارگیری بالای قوطی */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(200, 163, 119, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  border-radius: 40px;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #c8a377; /* هماهنگ با رنگ لوکس سازمانی */
+  font-weight: 700;
+  font-size: 1.25rem;
+  z-index: 20;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.bucket {
   width: 220px;
   height: 200px;
-  background-color: var(--accent-color); /* خمیر الان کاملاً هم‌رنگ برند شده */
-  border-radius: 10px 10px 40px 40px;
-  border: 1px solid #f0f0f0;
-  box-shadow: inset 0 -10px 30px rgba(0,0,0,0.1), var(--shadow-soft);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 248, 248, 0.6) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0 0 40px 40px;
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.06), 
+    0 8px 16px rgba(0, 0, 0, 0.03),  
+    inset 0 2px 4px rgba(255, 255, 255, 1), 
+    inset 0 -10px 20px rgba(0, 0, 0, 0.02); 
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
 }
 
-/* ابزار هم‌زن (Draggable) */
+/* کانتینر مواد خام (پودر و آب) */
+.rawIngredients {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.powderSvg {
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* آبِ 20 درصدی کف قوطی */
+.waterLayer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%; /* همون یک پنجمی که خواستید */
+  background: linear-gradient(180deg, rgba(168, 192, 203, 0.4) 0%, rgba(168, 192, 203, 0.7) 100%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-top: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 40px 40px;
+}
+
+/* خمیر یکدستی که بعد از هم‌زدن ظاهر می‌شود */
+/* =========================================
+   خمیر یکدستی که بعد از هم‌زدن ظاهر می‌شود
+========================================= */
+.mixedPaste {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80%; /* ارتفاع خمیر داخل قوطی */
+  z-index: 3;
+  border-radius: 0 0 40px 40px; /* فقط پایینش گرد میشه که از قوطی بیرون نزنه */
+  overflow: hidden; /* بالای خمیر رو همون SVG کنترل میکنه */
+}
+
+/* استایل خود SVG خمیر */
+.pasteSvg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* یک سایه ملایم روی کل خمیر میندازیم تا حس سه‌بعدیِ دیواره‌های قوطی منتقل بشه */
+.pasteShadowOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 10px 25px rgba(0,0,0,0.06);
+  pointer-events: none; /* تا مزاحم درگ کردنِ هم‌زن نشه */
+}
+/* =========================================
+   ابزار هم‌زن (Draggable)
+========================================= */
+/* =========================================
+   ابزار هم‌زن (باریک‌تر، بلندتر و مینیمال)
+========================================= */
+/* =========================================
+   ابزار هم‌زن (چوبی با بافت و رگه‌های طبیعی)
+========================================= */
 .mixerTool {
-  width: 60px;
-  height: 120px;
-  background-color: var(--surface-color);
-  border: 2px solid #e0e0e0;
-  border-radius: 30px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  position: absolute;
+  top: 0px; 
+  width: 32px; 
+  height: 190px; 
+  
+  /* رنگ پایه چوب */
+  background-color: #d1a373; 
+  
+  /* ایجاد بافت طبیعی چوب با ترکیب لایه‌های CSS */
+  background-image: 
+    /* لایه 1: گره‌های چوب (انحناهای روی چوب) */
+    repeating-radial-gradient(
+      ellipse at 50% -20%, 
+      transparent, 
+      transparent 15px, 
+      rgba(100, 50, 20, 0.05) 16px, 
+      rgba(100, 50, 20, 0.05) 18px
+    ),
+    /* لایه 2: رگه‌های عمودی و رشته‌های چوب */
+    repeating-linear-gradient(
+      92deg,
+      transparent,
+      transparent 3px,
+      rgba(100, 50, 20, 0.04) 4px,
+      rgba(100, 50, 20, 0.04) 5px
+    ),
+    /* لایه 3: سایه‌روشن برای گرد نشان دادن بدنه چوب */
+    linear-gradient(
+      90deg, 
+      rgba(0, 0, 0, 0.15) 0%, 
+      rgba(255, 255, 255, 0.15) 40%, 
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  
+  /* حاشیه ظریف تیره برای لبه‌های چوب */
+  border: 1px solid #b8865c;
+  border-radius: 16px; 
+  
+  /* سایه زیر چوب روی قوطی */
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.15), 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.15), /* نور لبه بالایی */
+    inset -2px -2px 4px rgba(0, 0, 0, 0.1);      /* تاریکی لبه پایینی */
+    
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: #999;
+  justify-content: flex-start; 
+  padding-top: 25px; 
+  gap: 6px; 
+  
   cursor: grab;
   z-index: 10;
+  touch-action: none; 
+  transition: box-shadow 0.2s ease;
 }
 
+/* وقتی کاربر چوب را می‌گیرد سایه جمع‌تر می‌شود (انگار به قوطی چسبیده) */
 .mixerTool:active {
   cursor: grabbing;
+  box-shadow: 
+    0 8px 15px rgba(0, 0, 0, 0.1), 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.15),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* نوار پیشرفتِ هم‌زدن */
+/* =========================================
+   شیارهای کنده‌کاری شده روی چوب (دستگیره)
+========================================= */
+.gripLine {
+  width: 14px;
+  height: 2px;
+  /* رنگ تیره‌تر برای نشان دادن عمق کنده‌کاری در چوب */
+  background-color: rgba(70, 30, 10, 0.25); 
+  border-radius: 2px;
+  /* سایه داخلی برای عمق دادن، و سایه بیرونی سفید برای لبه‌ی نور خورده‌ی شیار */
+  box-shadow: 
+    inset 0 1px 1px rgba(0, 0, 0, 0.15), 
+    0 1px 0 rgba(255, 255, 255, 0.25); 
+}
+/* =========================================
+   نوار پیشرفت
+========================================= */
 .progressContainer {
   width: 220px;
   height: 8px;
-  background-color: #eee;
+  background-color: rgba(0,0,0,0.05);
   border-radius: 4px;
-  margin-top: 2rem;
+  margin-top: 1rem;
   overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .progressBar {
   height: 100%;
-  background-color: var(--text-primary);
+  background-color: #333;
   transition: width 0.1s linear;
+  border-radius: 4px;
 }
 
-/* تایمر شیک و قفل صفحه */
+/* =========================================
+   تایمر استراحت
+========================================= */
 .timerOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(253, 253, 253, 0.85); /* پس‌زمینه نیمه‌شفاف روشن */
-  backdrop-filter: blur(8px); /* افکت تار شدن پس‌زمینه */
+  background: rgba(255, 255, 255, 0.75);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,12 +293,15 @@
 .timerNumber {
   font-size: 6rem;
   font-weight: 900;
-  color: var(--accent-color);
+  color: #333;
   margin-bottom: 1rem;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .timerText {
   font-size: 1.5rem;
-  color: var(--text-primary);
+  color: #555;
   font-weight: 700;
 }
+
+

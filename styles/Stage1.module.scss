@@ -1,13 +1,22 @@
 /* styles/Stage1.module.scss */
 
+/* =========================================
+   ساختار اصلی صفحه
+========================================= */
 .stageContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+  position: relative; /* برای شناور ماندن نوار رنگ در پایین صفحه */
   text-align: center;
   padding: 2rem;
+  overflow: hidden; /* جلوگیری از اسکرول ناخواسته در موبایل */
+}
+
+.textWrap {
+  margin-bottom: 3rem; /* فاصله دادن متن‌ها از قوطی */
 }
 
 .title {
@@ -20,11 +29,12 @@
 .subtitle {
   font-size: 1.1rem;
   color: #777;
-  margin-bottom: 4rem;
   font-weight: 300;
 }
 
-/* محفظه نگهدارنده سطل و در */
+/* =========================================
+   محفظه، قوطی و در (المان‌های تعاملی)
+========================================= */
 .bucketWrapper {
   position: relative;
   width: 260px;
@@ -34,33 +44,114 @@
   justify-content: center;
 }
 
-/* استایل موقت برای بدنه سطل (تا زمان جایگذاری PNG) */
+// .bucket {
+//   width: 220px;
+//   height: 200px;
+//   background-color: rgba(253, 253, 253, 0.6);
+//   backdrop-filter: blur(4px); /* افکت مات شدن پلاستیک */
+//   border-radius: 0 0 40px 40px;
+//   box-shadow: inset 0 -5px 15px rgba(0,0,0,0.02), var(--shadow-soft);
+//   border: 1px solid #f0f0f0;
+//   position: absolute;
+//   bottom: 0;
+//   z-index: 1;
+//   display: flex;
+//   align-items: flex-end;
+//   overflow: hidden; /* جلوگیری از بیرون زدن پودر از گوشه‌های گرد */
+// }
+
+// .lid {
+//   width: 220px;
+//   height: 50px;
+//   background-color: var(--surface-color);
+  
+//   /* شیار/نشانگر عمودی ظریف روی در */
+//   background-image: linear-gradient(90deg, transparent 48%, rgba(0,0,0,0.1) 49%, rgba(0,0,0,0.1) 51%, transparent 52%);
+//   background-size: 110px 20px;
+//   background-repeat: repeat-x;
+//   background-position: 0px 15px;
+  
+//   border-radius: 15px 15px 0 0;
+//   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.03);
+//   border: 1px solid #f0f0f0;
+//   border-bottom: none;
+//   position: absolute;
+//   top: 10px;
+//   z-index: 2;
+//   cursor: grab;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// .lid:active {
+//   cursor: grabbing;
+// }
+
+/* =========================================
+   محفظه، قوطی و در (با افکت مینیمال و حجم‌دار اپلی)
+========================================= */
+.bucketWrapper {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  /* اضافه کردن کمی فاصله از پایین برای اینکه سایه جدید جا داشته باشد */
+  margin-bottom: 2rem; 
+}
+
 .bucket {
   width: 220px;
   height: 200px;
-  background-color: var(--surface-color);
-  border-radius: 10px 10px 40px 40px;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid #f0f0f0;
+  
+  /* افکت شیشه مات / پلاستیک پریمیوم */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 248, 248, 0.6) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 0 0 40px 40px;
+  
+  /* راز حجم‌دهی مینیمال: ترکیب 4 سایه مختلف */
+  box-shadow: 
+    0 24px 48px rgba(0, 0, 0, 0.06), /* سایه نرم و بزرگ برای جدا کردن قوطی از پس‌زمینه */
+    0 8px 16px rgba(0, 0, 0, 0.03),  /* سایه متوسط برای ایجاد عمق */
+    inset 0 2px 4px rgba(255, 255, 255, 1), /* نور (هایلایت) لبه‌های داخلی بالا */
+    inset 0 -10px 20px rgba(0, 0, 0, 0.02); /* سایه بسیار محو در کف قوطی */
+    
+  border: 1px solid rgba(255, 255, 255, 0.8); /* حاشیه سفیدِ مات به جای خاکستری */
+  
   position: absolute;
   bottom: 0;
   z-index: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ccc;
-  font-weight: bold;
-  font-size: 1.5rem;
+  align-items: flex-end;
+  overflow: hidden;
 }
 
-/* استایل درِ سطل با قابلیت گرفتن و کشیدن */
 .lid {
-  width: 240px;
+  width: 220px;
   height: 50px;
-  background-color: var(--surface-color);
-  border-radius: 25px;
-  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.03);
-  border: 1px solid #f0f0f0;
+  
+  /* ایجاد حجم برای در با یک گرادیان ملایم از سفید به خاکستری بسیار روشن */
+  background: linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%);
+  
+  /* شیارهای ظریف روی در */
+  background-image: linear-gradient(90deg, transparent 48%, rgba(0,0,0,0.05) 49%, rgba(0,0,0,0.05) 51%, transparent 52%);
+  background-size: 110px 20px;
+  background-repeat: repeat-x;
+  background-position: 0px 15px;
+  
+  border-radius: 15px 15px 0 0;
+  
+  /* سایه در روی قوطی + هایلایت بالای در */
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.06), /* سایه‌ای که در روی بدنه قوطی می‌اندازد */
+    0 2px 6px rgba(0, 0, 0, 0.02),
+    inset 0 2px 3px rgba(255, 255, 255, 1); /* بازتاب نور دقیقاً روی لبه بالایی در */
+    
+  border: 1px solid rgba(230, 230, 230, 0.6);
+  border-bottom: none;
   position: absolute;
   top: 10px;
   z-index: 2;
@@ -74,9 +165,84 @@
   cursor: grabbing;
 }
 
-.swipeHint {
-  color: var(--accent-color); /* رنگ c8a377 */
-  font-size: 0.9rem;
-  font-weight: bold;
+.handIndicator {
+  position: absolute;
+  top: 15px; 
+  color: #c7c7c7;
   pointer-events: none;
+  z-index: 20; 
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25)); 
+}
+
+/* =========================================
+   پودر (SVG داینامیک)
+========================================= */
+.powderSvg {
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  filter: drop-shadow(0px -2px 4px rgba(0,0,0,0.02));
+}
+
+.svgPath {
+  transition: fill 0.4s ease-in-out; /* باعث می‌شود تغییر رنگ پودر خیلی نرم انجام شود */
+}
+
+/* =========================================
+   نوار رنگ شناور (ویژه موبایل و تاچ)
+========================================= */
+.mobileColorBar {
+  position: absolute;
+  bottom: 30px; /* فاصله از پایین صفحه - نزدیک شست کاربر */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 8px 12px;
+  
+  /* افکت شیشه‌ای مدرن (Glassmorphism) */
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  
+  border-radius: 40px; /* شکل کپسولی */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(220, 220, 220, 0.4);
+  z-index: 10;
+}
+
+.colorBtn {
+  width: 44px; /* فضای لمس بزرگ برای جلوگیری از خطای تاچ (Touch Target) */
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent; /* حذف چشمک آبی موقع لمس در اندروید */
+}
+
+.colorDot {
+  width: 26px; /* اندازه ظاهری دایره رنگی (کوچکتر از فضای لمس) */
+  height: 26px;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); /* ایجاد عمق ملایم در رنگ */
+}
+
+/* برای اینکه رنگ سفید روی پس‌زمینه روشن مشخص باشد، حاشیه ظریف می‌دهیم */
+.colorDot[data-color="white"] {
+  border: 1px solid #d0d0d0;
+}
+
+/* استایل وضعیتی که کاربر روی یک رنگ کلیک کرده است (Active) */
+.activeColor .colorDot {
+  transform: scale(1.35); /* دایره کمی بزرگ می‌شود */
+  border: 2px solid #fff; /* یک حاشیه سفید داخلی */
+  box-shadow: 0 0 0 2px #333, 0 4px 8px rgba(0,0,0,0.15); /* یک رینگ مشکی ظریف دور آن می‌افتد */
 }
