@@ -1,0 +1,152 @@
+/* styles/About.module.scss */
+@import './variables';
+
+.aboutPage {
+  padding: 12rem $padding-x 8rem;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* بخش هدر و داستان */
+.storySection {
+  text-align: right;
+  margin-bottom: 6rem;
+
+  .title {
+    font-size: 30px;
+    font-weight: 900;
+    color: #1d1d1f;
+    margin-bottom: 2rem;
+    letter-spacing: -1px;
+    line-height: 1.2;
+  }
+
+  .paragraph {
+    font-size: 1.25rem;
+    line-height: 2;
+    color: #86868b;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    text-align: justify;
+    text-align-last: right; /* خط آخر در مرکز قرار می‌گیره */
+  }
+}
+
+.btitle{
+    font-size: 30px;
+    font-weight: 900;
+    color: #1d1d1f;
+    margin-bottom: 2rem;
+    letter-spacing: -1px;
+    line-height: 1.2;
+}
+
+.bparagraph{
+    font-size: 1.25rem;
+    line-height: 2;
+    color: #86868b;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    text-align: justify;
+    text-align-last: right; /* خط آخر در مرکز قرار می‌گیره */
+}
+
+.ctitle{
+    font-size: 1.25rem;
+    line-height: 2;
+    color: #86868b;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    text-align: justify;
+    text-align-last: center; 
+}
+
+/* بخش فرمولاسیون (کارت‌ها) */
+.formulaSection {
+  margin-top: 8rem;
+
+  .subtitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1d1d1f;
+    text-align: right;
+    margin-bottom: 4rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.card {
+  background: #fbfbfd;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 3rem 2rem;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  text-align: right;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+    background: #ffffff;
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(200, 163, 119, 0.1);
+    color: $primary-color;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #86868b;
+  }
+}
+
+.conclusion {
+  margin-top: 6rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  line-height: 1.8;
+  padding: 3rem;
+  background: radial-gradient(circle, rgba(200, 163, 119, 0.05) 0%, transparent 70%);
+  border-radius: 30px;
+}
+
+/* ریسپانسیو */
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .storySection .title {
+    font-size: 2.5rem;
+  }
+}

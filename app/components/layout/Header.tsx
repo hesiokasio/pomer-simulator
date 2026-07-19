@@ -12,16 +12,17 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.headerContent}>
         
-        <div className={styles.headerActions}>
+        {/* <div className={styles.headerActions}>
           <button className={styles.buyBtn}>خرید محصول</button>
-        </div>
+        </div> */}
         
         <nav className={styles.nav}>
-          <Link href="/" className={pathname === '/' ? styles.active : ''}>خانه</Link>
-          <Link href="/tutorial" className={pathname === '/tutorial' ? styles.active : ''}>آموزش اجرا</Link>
-          <Link href="#features">ویژگی‌ها</Link>
+         <Link href="/" className={pathname === '/' ? styles.active : ''}>خانه</Link>
+         <Link href="/tutorial" className={pathname === '/tutorial' ? styles.active : ''}>آموزش اجرا</Link>
+         <Link href="/#features">ویژگی‌ها</Link>
+         <Link href="/#cta">ثبت سفارش</Link>
+         <Link href="/about" className={pathname === '/about' ? styles.active : ''}>درباره ما</Link>
         </nav>
-
         
 
         <Link href="/" className={styles.logo}>

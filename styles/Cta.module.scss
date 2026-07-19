@@ -2,7 +2,7 @@
 @import './variables';
 
 .ctaSection {
-  padding: 8rem $padding-x;
+  padding: 0 0 6rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,8 +13,8 @@
   border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 40px;
   padding: 20px;
-  max-width: 1200px; /* باکس رو عریض‌تر کردیم تا عکس و متن جا بشن */
   width: 100%;
+  max-width: $max-width-layout; 
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.02);
   position: relative;
   overflow: hidden;
@@ -89,7 +89,7 @@
   font-weight: 600px;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 170px;
+  width: 190px;
   align-items: center;
   text-align: center;
 
@@ -112,7 +112,7 @@
   font-weight: 600px;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 170px;
+  width: 190px;
   align-items: center;
   text-align: center;
 
@@ -130,7 +130,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 400px; /* این رو اضافه کن تا باکس عکس ارتفاع داشته باشه و جمع نشه */
+  min-height: 400px; 
+  height: 400px; /* این خط رو اضافه کن تا اسلایدر دقیقاً 400 پیکسل بشه */
+  border-radius: 24px; /* اگر خواستی گوشه‌هاش هم نرم بشه */
+ /* این رو اضافه کن تا باکس عکس ارتفاع داشته باشه و جمع نشه */
 
   .imageBg {
     display: none; /* چون عکس کل کادر رو پر می‌کنه، دیگه به هاله نوری پشتش نیازی نداریم */

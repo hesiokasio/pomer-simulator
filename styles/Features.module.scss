@@ -3,13 +3,14 @@
 
 .featuresSection {
   width: 100%;
-  padding: 8rem $padding-x;
+  padding: 6rem $padding-x;
   background-color: $bg-light;
   position: relative;
 }
 
 .container {
-  max-width: $max-width-layout;
+  width: 100%;
+  max-width: $max-width-layout; 
   margin: 0 auto;
 }
 
@@ -22,7 +23,7 @@
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 2px;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
     position: relative;
     padding-right: 2rem;
 
@@ -41,7 +42,7 @@
   .title {
     font-size: 24px;
     color: $text-dark;
-    margin-bottom: 16;
+    margin-bottom: 16px;
   }
 
   p{
@@ -118,8 +119,7 @@
 }
 
 .cardTitle {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 24px;
   color: $text-dark;
   margin-bottom: 1rem;
 }

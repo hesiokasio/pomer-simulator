@@ -16,9 +16,8 @@
 
 .headerContent {
   width: 100%;
-  max-width: $max-width-layout; /* عرض ثابت 1200 */
+  max-width: $max-width-layout; 
   margin: 0 auto;
-  padding: 0 $padding-x;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -89,32 +88,118 @@
 /* ========== Footer ========== */
 .footer {
   width: 100%;
-  background: $text-dark;
+  background: $text-dark; /* پس‌زمینه تیره کدهای خودت */
   color: #fff;
-  padding: 3rem 0;
-  margin-top: auto; /* این کد فوتر رو همیشه هل میده پایین‌ترین نقطه صفحه */
+  padding: 5rem 0 3rem;
+  margin-top: auto;
 }
 
 .footerContent {
-  max-width: $max-width-layout; /* عرض ثابت 1200 */
+  max-width: $max-width-layout;
   width: 100%;
   margin: 0 auto;
-  padding: 0 $padding-x;
+  display: flex;
+  justify-content: space-between; /* لوگو چپ، لینک‌ها راست */
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 4rem;
+}
+
+/* --- سمت راست: گروه‌های لینک --- */
+.rightSection {
+  display: flex;
+  gap: 6rem;
+  flex-wrap: wrap;
+}
+
+.navGroup, .contactGroup {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff; /* تیترهای سفید روی پس‌زمینه تیره */
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: #bbb; 
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 400;
+    
+    /* این ۳ خط برای تراز کردن آیکون و متن اضافه شدن */
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    /* کنترل سایز آیکون‌ها */
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+      color: $primary-color; 
+    }
+  }
 }
 
-.footerLogo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: $primary-color;
+/* --- سمت چپ: لوگو و کپی‌رایت --- */
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  max-width: 350px;
+  max-width: 400px;
+  width: 100%;
+
+  .logo {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #bbb;
+    margin-bottom: 2.5rem;
+  }
+
+  .copyright {
+    color: #888; /* همون رنگ کپی‌رایت خودت */
+    font-size: 0.85rem;
+    font-weight: 300;
+  }
 }
 
-.copyright {
-  color: #888;
-  font-size: 0.9rem;
-  font-weight: 300;
+/* ریسپانسیو برای تبلت و موبایل */
+@media (max-width: 992px) {
+  .footerContent {
+    flex-direction: column-reverse; /* موبایل: لوگو میاد پایین */
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+  }
+  .rightSection {
+    justify-content: center;
+    gap: 4rem;
+  }
+  .navGroup, .contactGroup {
+    align-items: center;
+  }
+  .leftSection {
+    align-items: center;
+    text-align: center;
+  }
 }

@@ -16,7 +16,8 @@ html, body {
   overflow-x: hidden;
   background-color: $bg-light;
   color: $text-dark;
-  /* خط font-family که اینجا بود رو کلاً پاک کن */
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 100px;
 }
 
 /* حل مشکل رفتن فوتر به سمت چپ */

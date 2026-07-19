@@ -8,7 +8,8 @@
 }
 
 .container {
-  max-width: 900px; /* عرض رو کمی جمع‌تر کردیم تا متن‌ها کش نیان */
+  width: 100%;
+  max-width: $max-width-layout;  /* عرض رو کمی جمع‌تر کردیم تا متن‌ها کش نیان */
   margin: 0 auto;
 }
 

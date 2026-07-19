@@ -5,7 +5,8 @@
 }
 
 .container {
-  max-width: $max-width-layout;
+  width: 100%;
+  max-width: $max-width-layout; 
   margin: 0 auto;
 }
 
@@ -18,7 +19,7 @@
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 2px;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
     position: relative;
     padding-right: 2rem;
 
@@ -37,7 +38,7 @@
   .title {
     font-size: 24px;
     color: $text-dark;
-    margin-bottom: 16;
+    margin-bottom: 16px;
   }
 
   p{
@@ -78,7 +79,7 @@
 /* جایگاه عکس محصول */
 .imageWrapper {
   width: 100%;
-  aspect-ratio: 5 / 3;
+  aspect-ratio: 4 / 3;
   position: relative;
   background-color: #f5f5f7;
   display: flex;
@@ -92,6 +93,10 @@
   }
 }
 
+/* styles/Products.module.scss */
+
+// ... کدهای قبلی تا قبل از .cardContent دست نخورده بماند ...
+
 .cardContent {
   padding: 1.5rem 1.5rem;
   text-align: center;
@@ -100,47 +105,46 @@
   flex: 1;
 }
 
-.tag {
-  display: inline-block;
-  background: rgba(200, 163, 119, 0.08);
-  color: $primary-color;
-  padding: 0.4rem 1.2rem;
-  border-radius: 30px;
-  font-size: 0.8rem;
+/* استایل بج وزن - مینیمال و شیک */
+/* استایل بج وزن - چسبیده به چپ و روی مرز عکس */
+/* استایل بج وزن - عرض ثابت و هم‌اندازه برای تمام کارت‌ها */
+.weightBadge {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(50%);
+  
+  background-color: $primary-color;
+  color: #fff;
+  
+  /* --- تغییرات جدید برای عرض ثابت --- */
+  width: 90px; /* یک عرض ثابت و شیک برای هر سه بج */
+  text-align: center; /* قرار دادن نوشته دقیقاً در وسط بج */
+  padding: 0.4rem 0; /* پدینگ چپ و راست رو برداشتیم چون حالا عرض ثابت داریم */
+  /* ----------------------------------- */
+  
+  border-radius: 0 20px 20px 0; 
+  
+  font-size: 0.85rem;
   font-weight: 700;
-  margin: 0 auto 1.5rem auto;
+  letter-spacing: 0.5px;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(200, 163, 119, 0.35);
 }
 
 .cardTitle {
-  font-size: 1rem;
+  font-size: 22px;
   font-weight: 800;
   color: #1d1d1f;
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .cardDesc {
   font-size: 0.95rem;
-  line-height: 1.6; /* <--- ارتفاع خطوط رو هم کمی کمتر کردم */
+  line-height: 1.8;
   color: #86868b;
-  margin-bottom: 1.5rem; /* <--- این رو از 2rem به 1.5rem تغییر بده */
+  margin-bottom: 1rem;
   flex: 1;
-}
-
-.weightBadge {
-  background: #ffffff;
-  border: 1px solid #e5e5ea;
-  color: #1d1d1f;
-  padding: 0.8rem;
-  border-radius: 20px;
-  font-size: 1rem;
-  font-weight: 700;
-  margin-top: auto;
-  transition: all 0.3s ease;
-
-  &:hover {
-    border-color: #1d1d1f;
-    background: #fbfbfd;
-  }
 }
 
 /* ریسپانسیو */
@@ -152,6 +156,6 @@
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr; /* در موبایل زیر هم قرار می‌گیرن */
+    grid-template-columns: 1fr;
   }
 }

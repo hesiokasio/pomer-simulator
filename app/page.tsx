@@ -7,6 +7,7 @@ import ComparisonSection from '@/app/components/landing/ComparisonSection';
 import SpecsSection from '@/app/components/landing/SpecsSection';
 import ProductsSection from './components/landing/ProductsSection';
 import CtaSection from '@/app/components/landing/CtaSection';
+import CalculatorSection from '@/app/components/landing/CalculatorSection';
 // کامپوننت‌های بعدی هم اینجا ایمپورت میشن
 
 export default function LandingPage() {
@@ -18,6 +19,7 @@ export default function LandingPage() {
       {/* <ComparisonSection />
       <SpecsSection /> */}
       <ProductsSection />
+      <CalculatorSection />
       <CtaSection />
       
       {/* <FeaturesSection /> */}

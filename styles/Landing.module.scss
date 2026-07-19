@@ -12,8 +12,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: $max-width-layout; /* عرض ثابت 1200 */
   width: 100%;
+  max-width: $max-width-layout; 
   margin: 0 auto;
   padding: 4rem $padding-x; /* پدینگ کناری دقیقا برابر با هدر و فوتر */
   min-height: calc(100vh - 80px); 

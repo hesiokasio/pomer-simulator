@@ -49,9 +49,9 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
         >
-          <button className={styles.btnPrimary}>
-            خرید پکیج پومر
-          </button>
+          <Link href="/#cta" className={styles.btnPrimary}>
+             خرید پکیج پومر
+          </Link>
           <Link href="/tutorial" className={styles.btnSecondary}>
             {/* <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
