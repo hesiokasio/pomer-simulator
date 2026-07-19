@@ -1,0 +1,141 @@
+/* styles/Comparison.module.scss */
+@import './variables';
+
+.comparisonSection {
+  padding: 8rem $padding-x;
+  background-color: #fbfbfd; /* هم‌رنگ با پس‌زمینه هیرو برای یکپارچگی */
+  position: relative;
+}
+
+.container {
+  max-width: 900px; /* عرض رو کمی جمع‌تر کردیم تا متن‌ها کش نیان */
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+
+  .subtitle {
+    color: $primary-color;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #1d1d1f;
+  }
+}
+
+.cardsWrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.card {
+  flex: 1;
+  border-radius: 32px; /* گوشه‌های بسیار گرد و مدرن */
+  padding: 3.5rem 2.5rem;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* کارت روش سنتی (پس‌زمینه خاکستری مات اپل، بدون سایه و کادر) */
+.cardTraditional {
+  background: #f5f5f7; 
+  border: none;
+  
+  h3 {
+    color: #86868b;
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .listItem {
+    color: #86868b;
+  }
+}
+
+/* کارت پومر (سفید مطلق، سایه بسیار نرم، برجسته) */
+.cardPomer {
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04); /* سایه لوکس و نامرئی */
+  z-index: 2;
+
+  /* نشانِ داخلی و ظریف */
+  .badge {
+    display: inline-block;
+    background: rgba(200, 163, 119, 0.1);
+    color: $primary-color;
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    color: #1d1d1f;
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(200, 163, 119, 0.15);
+  }
+
+  .listItem {
+    color: #1d1d1f;
+    font-weight: 500;
+  }
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.8rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+
+  /* پس‌زمینه دایره‌ای ظریف برای آیکون‌ها */
+  .iconBox {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.5;
+    }
+  }
+}
+
+.iconBoxRed {
+  background: rgba(255, 59, 48, 0.1);
+  color: #ff3b30; /* قرمز کلاسیک */
+}
+
+.iconBoxGold {
+  background: rgba(200, 163, 119, 0.15);
+  color: $primary-color; /* رنگ c8a377 */
+}
+
+/* ریسپانسیو */
+@media (max-width: 992px) {
+  .cardsWrapper {
+    flex-direction: column;
+  }
+}

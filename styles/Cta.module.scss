@@ -1,0 +1,166 @@
+/* styles/Cta.module.scss */
+@import './variables';
+
+.ctaSection {
+  padding: 8rem $padding-x;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ctaBox {
+  background: #fbfbfd;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 40px;
+  padding: 20px;
+  max-width: 1200px; /* باکس رو عریض‌تر کردیم تا عکس و متن جا بشن */
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.02);
+  position: relative;
+  overflow: hidden;
+  
+  /* چیدمان دو ستونه */
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* افکت نوری محو در پس‌زمینه کارت */
+.ctaBox::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(200, 163, 119, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- ستون راست (متن‌ها) --- */
+.textContent {
+  flex: 1.2;
+  text-align: right;
+  z-index: 2;
+  margin-right: 40px;
+}
+
+.priceTag {
+  display: inline-block;
+  background: rgba(200, 163, 119, 0.1);
+  color: $primary-color;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.title {
+    font-size: 24px;
+    color: $text-dark;
+    margin-bottom: 16;
+  }
+
+  .subtitle{
+    font-size: 16px;
+    line-height: 1.8;
+    color: #86868b; /* خاکستریِ خوانا و مینیمال */
+    margin-bottom: 30px;
+    font-weight: 400;
+  }
+
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btnPrimary {
+  background: #303030;
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 170px;
+  align-items: center;
+  text-align: center;
+
+  &:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* دکمه شبیه‌ساز: حاشیه بسیار ظریف، شیشه‌ای و شیک */
+.btnSecondary {
+  background: transparent;
+  color: #303030;
+  border: 1px solid #303030;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 170px;
+  align-items: center;
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+
+/* --- ستون چپ (عکس) --- */
+.imageContent {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px; /* این رو اضافه کن تا باکس عکس ارتفاع داشته باشه و جمع نشه */
+
+  .imageBg {
+    display: none; /* چون عکس کل کادر رو پر می‌کنه، دیگه به هاله نوری پشتش نیازی نداریم */
+  }
+
+  img {
+    position: relative;
+    z-index: 1;
+    /* width و max-width و filter قبلی رو پاک کن */
+  }
+}
+
+/* ریسپانسیو برای تبلت و موبایل */
+@media (max-width: 992px) {
+  .ctaBox {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 2rem;
+    gap: 2rem;
+  }
+  .textContent {
+    text-align: center;
+  }
+  .subtitle {
+    margin: 0 auto 2.5rem auto;
+  }
+  .buttons {
+    justify-content: center;
+  }
+  .imageContent {
+    order: -1; /* در موبایل عکس میره بالای متن */
+  }
+}

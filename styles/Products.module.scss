@@ -1,0 +1,157 @@
+/* styles/Products.module.scss */
+@import './variables';
+
+.productsSection {
+}
+
+.container {
+  max-width: $max-width-layout;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 20px;
+  
+  .subtitle {
+    display: inline-block;
+    color: $primary-color;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-right: 2rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 2px;
+      background-color: $primary-color;
+    }
+  }
+
+  .title {
+    font-size: 24px;
+    color: $text-dark;
+    margin-bottom: 16;
+  }
+
+  p{
+    font-size: 16px;
+    line-height: 1.8;
+    color: #86868b; /* خاکستریِ خوانا و مینیمال */
+    margin-bottom: 30px;
+    font-weight: 400;
+  }
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.productCard {
+  background: #ffffff;
+  border-radius: 32px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.02);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+    border-color: rgba(200, 163, 119, 0.2);
+  }
+}
+
+/* جایگاه عکس محصول */
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  position: relative;
+  background-color: #f5f5f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .placeholderText {
+    color: #a1a1a6;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+}
+
+.cardContent {
+  padding: 1.5rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tag {
+  display: inline-block;
+  background: rgba(200, 163, 119, 0.08);
+  color: $primary-color;
+  padding: 0.4rem 1.2rem;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin: 0 auto 1.5rem auto;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1d1d1f;
+  margin-bottom: 1rem;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  line-height: 1.6; /* <--- ارتفاع خطوط رو هم کمی کمتر کردم */
+  color: #86868b;
+  margin-bottom: 1.5rem; /* <--- این رو از 2rem به 1.5rem تغییر بده */
+  flex: 1;
+}
+
+.weightBadge {
+  background: #ffffff;
+  border: 1px solid #e5e5ea;
+  color: #1d1d1f;
+  padding: 0.8rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: auto;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: #1d1d1f;
+    background: #fbfbfd;
+  }
+}
+
+/* ریسپانسیو */
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; /* در موبایل زیر هم قرار می‌گیرن */
+  }
+}

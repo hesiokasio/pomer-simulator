@@ -1,7 +1,7 @@
 // app/layout.tsx
 import './globals.scss';
-import Header from '@/app/components/Header';
-import Footer from '@/app/components/Footer';
+import Header from '@/app/components/layout/Header';
+import Footer from '@/app/components/layout/Footer';
 
 import { Vazirmatn } from 'next/font/google';
 

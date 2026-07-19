@@ -2,10 +2,10 @@
 
 import { useSimulatorStore } from '@/store/useSimulatorStore';
 import { AnimatePresence, motion } from 'framer-motion';
-import Stage1_Unbox from '@/components/stages/Stage1_Unbox';
-import Stage2_Water from '@/components/stages/Stage2_Water';
-import Stage3_Mix from '@/components/stages/Stage3_Mix';
-import Stage4_Apply from '@/components/stages/Stage4_Apply';
+import Stage1_Unbox from '@/app/components/stages/Stage1_Unbox';
+import Stage2_Water from '@/app/components/stages/Stage2_Water';
+import Stage3_Mix from '@/app/components/stages/Stage3_Mix';
+import Stage4_Apply from '@/app/components/stages/Stage4_Apply';
 
 export default function SimulatorPage() {
   const currentStage = useSimulatorStore((state) => state.currentStage);

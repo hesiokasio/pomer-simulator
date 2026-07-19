@@ -1,0 +1,110 @@
+/* styles/Specs.module.scss */
+@import './variables';
+
+.specsSection {
+  width: 100%;
+  padding: 8rem $padding-x;
+  background-color: $text-dark; /* پس‌زمینه مشکی/تیره */
+  color: #fff;
+}
+
+.container {
+  max-width: $max-width-layout;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 5rem;
+
+  .subtitle {
+    color: $primary-color;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 3rem;
+    font-weight: 800;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* بخش لیست مشخصات */
+.specsList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.specItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .specLabel {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #aaa;
+  }
+
+  .specValue {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+  }
+}
+
+/* بخش رنگ‌بندی */
+.colorsBox {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+  }
+
+  .colorGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  .colorCircle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      transform: scale(1.15);
+      border-color: $primary-color;
+    }
+  }
+}
+
+/* ریسپانسیو */
+@media (max-width: 992px) {
+  .content {
+    grid-template-columns: 1fr; /* در موبایل زیر هم قرار میگیرن */
+  }
+}
