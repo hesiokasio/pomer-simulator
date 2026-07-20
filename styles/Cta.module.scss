@@ -167,3 +167,79 @@
     order: -1; /* در موبایل عکس میره بالای متن */
   }
 }
+
+
+/* =========================================
+   ریسپانسیو برای تبلت و موبایل
+   ========================================= */
+@media (max-width: 992px) {
+  .ctaBox {
+    flex-direction: column; /* چیدمان ستونی */
+    text-align: center;
+    padding: 2rem 1.2rem; /* پدینگ بهینه‌تر برای جا شدن محتوا */
+    gap: 1.5rem; /* فاصله بین عکس و متن کمتر شد */
+  }
+  
+  .imageContent {
+    order: -1; /* جادوی فلکس‌باکس: عکس رو میفرسته بالای متن‌ها */
+    width: 100%;
+    min-height: 260px; /* ارتفاع عکس در موبایل کمتر میشه تا کل صفحه رو نگیره */
+    height: 260px;
+  }
+
+  .textContent {
+    margin-right: 0; /* خیلی مهم: ریست کردن مارجینِ دسکتاپ */
+    text-align: center;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 22px; /* تیتر کمی جمع‌وجورتر */
+  }
+
+  .subtitle {
+    margin: 0 auto 1.5rem auto;
+    font-size: 14px;
+    max-width: 95%; /* تا لبه‌های گوشی نچسبه */
+  }
+
+  /* تنظیم دکمه‌ها در موبایل */
+  .actionButtons {
+    display: flex;
+    flex-direction: row; /* در کنار هم قرار می‌گیرند */
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* استایل اختصاصی دکمه‌ها برای اینکه تو موبایل دقیقاً جا بشن */
+  .btnPrimary, .btnSecondary {
+    flex: 1; /* عرض باقی‌مانده رو مساوی بین دو دکمه تقسیم می‌کنه */
+    width: auto; /* عرض ثابت ۱۹۰ پیکسل دسکتاپ رو باطل می‌کنه */
+    padding: 12px 8px; /* پدینگ کناری کمتر تا جا باز بشه */
+    font-size: 12px; /* فونت کوچکتر برای موبایل */
+    
+    /* برای اینکه آیکون و متن دکمه تو موبایل قشنگ‌تر وایسن */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px !important; /* فاصله آیکون و متن رو تو موبایل کم میکنیم */
+    
+    svg {
+      width: 16px; /* آیکون‌ها رو یکم کوچیکتر می‌کنیم */
+      height: 16px;
+    }
+  }
+}
+
+/* برای گوشی‌های خیلی کوچیک (زیر 380 پیکسل مثل آیفون SE) که دکمه‌ها کنار هم له میشن */
+@media (max-width: 380px) {
+  .actionButtons {
+    flex-direction: column; /* دکمه‌ها رو میاره زیر هم */
+  }
+  
+  .btnPrimary, .btnSecondary {
+    width: 100%; /* دکمه کل عرض رو میگیره */
+    font-size: 14px;
+  }
+}

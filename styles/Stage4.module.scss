@@ -1,19 +1,31 @@
-/* styles/Stage4.module.scss */
-
+/* =========================================
+   ساختار مشترک و ثابت (Stage 4)
+========================================= */
 .stageContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-align: center;
-  padding: 2rem;
   position: relative;
-  overflow: hidden;
+  width: 100%;
+  
+  /* حالت دسکتاپ: حداقل 680 پیکسل */
+  min-height: max(calc(100vh - 80px), 680px); 
+  
+  /* حالت موبایل: مچ شدن با ارتفاع دقیق گوشی */
+  @media (max-width: 768px) {
+    min-height: calc(100dvh - 80px); 
+  }
+  
+  overflow-x: hidden;
+  overflow-y: auto; 
+  background-color: transparent;
 }
 
 .textWrap {
-  margin-bottom: 2.5rem;
+  position: absolute;
+  top: 50px; 
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 10;
 }
 
 .title {
@@ -21,6 +33,7 @@
   color: var(--text-primary, #333);
   margin-bottom: 0.8rem;
   font-weight: 700;
+  @media (max-width: 768px) { font-size: 1.4rem; }
 }
 
 .subtitle {
@@ -28,36 +41,102 @@
   color: #777;
   font-weight: 300;
   line-height: 1.6;
+  @media (max-width: 768px) { font-size: 0.95rem; }
+}
+
+.backButton {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 220px); 
+  transform: translateY(-50%);
+  width: 48px;  /* کمی بزرگ‌تر برای تاچ راحت‌تر و ظاهر لوکس‌تر */
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* استایل گلس‌مورفیسم مدرن */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: #333;
+  
+  /* سایه نرم و چندلایه برای ایجاد عمق */
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.06), 
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* انیمیشن فوق‌العاده نرم */
+  z-index: 50;
+
+  svg { 
+    width: 22px; 
+    height: 22px; 
+    transition: transform 0.3s ease; 
+  }
+  
+  &:hover {
+    background: #ffffff;
+    border-color: #c8a377; 
+    color: #c8a377; 
+    
+    /* یک درخشش ملایم با رنگ اصلی پروژه */
+    box-shadow: 
+      0 10px 25px rgba(200, 163, 119, 0.25), 
+      inset 0 2px 4px rgba(255, 255, 255, 1);
+    
+    /* دکمه کمی پاپ می‌شود و آیکون به عقب اشاره می‌کند */
+    transform: translateY(-50%) scale(1.05); 
+    svg { transform: translateX(-4px); }
+  }
+
+  @media (max-width: 768px) {
+    top: 20px;
+    left: 20px;
+    transform: none; 
+    width: 42px;
+    height: 42px;
+    
+    &:hover {
+      transform: scale(1.05); /* توی موبایل موقع هاور شدن، translateY رو باطل می‌کنیم */
+    }
+  }
+}
+
+
+.tileWrapper {
+  position: absolute;
+  top: 52%; /* کاشی دقیقاً وسط صفحه، کمی متمایل به پایین قفل می‌شود */
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 5;
 }
 
 /* =========================================
-   محدوده کاشی‌ها و اجرای خمیر
+   المان‌های اختصاصی (Stage 4)
 ========================================= */
-.tileWrapper {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  margin-bottom: 1.5rem;
-}
-
-/* این کانتینر حرکات موس/تاچ را می‌گیرد */
 .interactionArea {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #e6e6e6; /* رنگ درزهای خالی (تیره) */
+  background: #e6e6e6; 
   border-radius: 12px;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.08),
-    inset 0 4px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 4px 8px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  touch-action: none; /* جلوگیری از اسکرول شدن صفحه در موبایل هنگام کشیدن */
+  touch-action: none; 
   cursor: crosshair;
 }
 
-/* بوم نقاشی (لایه زیرین) */
 .drawingCanvas {
   position: absolute;
   top: 0;
@@ -67,7 +146,6 @@
   z-index: 1; 
 }
 
-/* شبکه ۹ تایی کاشی‌ها (لایه رویی بوم) */
 .tilesGrid {
   position: absolute;
   top: 0;
@@ -77,83 +155,76 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 14px; /* ضخامت دقیق درز کاشی */
-  padding: 14px; /* حاشیه دور کار */
+  gap: 14px; 
+  padding: 14px; 
   z-index: 2;
-  pointer-events: none; /* بسیار مهم: اجازه می‌دهد تاچ از کاشی رد شود و به Canvas برسد */
+  pointer-events: none; 
 }
 
-/* خود کاشی‌ها */
 .tile {
   background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
   border-radius: 6px;
-  box-shadow: 
-    0 4px 10px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
-/* دست راهنما */
 .handIndicator {
   position: absolute;
-  top: 15px; 
-  color: #c7c7c7;
-  pointer-events: none;
   z-index: 20; 
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25)); 
 }
 
-/* پاپ‌آپ موفقیت در انتهای کار */
-.successOverlay {
+/* =========================================
+   دکمه‌های پایانی
+========================================= */
+.actionButtons {
   position: absolute;
-  top: 0;
+  top: calc(52% + 200px); /* قفل شدن زیر کاشی در دسکتاپ */
   left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(4px);
+  padding: 0 20px; 
+  box-sizing: border-box; 
+  display: flex;
+  justify-content: center; 
+  flex-direction: row-reverse;
+  gap: 12px;
   z-index: 20;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
 }
 
-.checkIcon {
-  width: 60px;
-  height: 60px;
-  background: #c8a377;
-  color: white;
-  border-radius: 50%;
+.primaryBtn, .secondaryBtn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 10px 20px rgba(200, 163, 119, 0.3);
+  min-width: 140px;
+  font-family: inherit;
+  border: none;
+  text-decoration: none;
 }
 
-.successText {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #333;
+.primaryBtn {
+  background-color: #333333; 
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  
+  &:hover { 
+    background-color: #1a1a1a; 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
 }
 
-/* =========================================
-   نوار پیشرفت
-========================================= */
-.progressContainer {
-  width: 220px;
-  height: 8px;
-  background-color: rgba(0,0,0,0.05);
-  border-radius: 4px;
-  margin-top: 1rem;
-  overflow: hidden;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.progressBar {
-  height: 100%;
-  transition: width 0.2s ease-out;
-  border-radius: 4px;
+.secondaryBtn {
+  background-color: #ffffff; 
+  color: #333333;
+  border: 1px solid #d1d1d1;
+  
+  &:hover { 
+    background-color: #f7f7f7; 
+    transform: translateY(-2px); 
+  }
 }

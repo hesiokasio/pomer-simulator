@@ -6,6 +6,13 @@
   flex-direction: column;
   overflow: hidden;
   background-color: $bg-light;
+  @media (max-width: 1200px) {
+    padding-left: 24px;
+    padding-right: 24px;
+    
+    /* یا می‌تونی از روش مدرن‌تر زیر استفاده کنی که هر دو رو پوشش میده: */
+    /* padding-inline: 24px; */
+  }
 }
 
 .heroSection {
@@ -133,4 +140,46 @@
   0% { transform: translateY(0px); }
   50% { transform: translateY(-15px); }
   100% { transform: translateY(0px); }
+}
+
+
+/* =========================================
+   حالت موبایل و تبلت برای Hero Section
+   ========================================= */
+@media (max-width: 992px) {
+  .heroSection {
+    /* جادوی فلکس‌باکس: جای عکس و متن رو برعکس میکنه (عکس میاد بالا) */
+    flex-direction: column-reverse; 
+    text-align: center; /* متن‌ها وسط‌چین میشن */
+    gap: 1rem; /* فاصله بین عکس و باکس متن */
+    padding-top: 0; /* فاصله از هدر سایت تو موبایل */
+    min-height: auto;
+    padding-bottom: 4rem;
+  }
+
+  .heroContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* محتوای داخل باکس وسط‌چین بشه */
+  }
+
+  .description {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .actionButtons {
+    justify-content: center; /* دکمه‌ها میان وسط */
+    flex-wrap: wrap; /* اگه صفحه گوشی خیلی کوچیک بود، دکمه دوم میره خط بعد */
+    gap: 15px;
+  }
+
+  .heroImageWrapper {
+    justify-content: center; /* عکس دقیقاً وسط کادر قرار میگیره */
+    width: 100%;
+    
+    .heroIllustration {
+      max-width: 80%; /* تو موبایل عکس یکم جمع‌وجورتر بشه که کل صفحه رو نگیره */
+    }
+  }
 }

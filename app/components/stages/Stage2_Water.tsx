@@ -7,7 +7,7 @@ import { useSimulatorStore } from '@/store/useSimulatorStore';
 import styles from '@/styles/Stage2.module.scss';
 
 export default function Stage2_AddWater() {
-  const { activeTheme, waterScoops, addWater, nextStage } = useSimulatorStore();
+const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulatorStore();
   
   const [isPouring, setIsPouring] = useState(false);
   const [streamVisible, setStreamVisible] = useState(false);
@@ -49,7 +49,7 @@ export default function Stage2_AddWater() {
 
   useEffect(() => {
     if (waterScoops >= 3) {
-      const timer = setTimeout(() => { nextStage(); }, 1200);
+      const timer = setTimeout(() => { nextStage(); }, 300); 
       return () => clearTimeout(timer);
     }
   }, [waterScoops, nextStage]);
@@ -109,6 +109,19 @@ export default function Stage2_AddWater() {
 
   return (
     <div className={styles.stageContainer}>
+
+      <button 
+  className={styles.backButton} 
+  onClick={prevStage} 
+  aria-label="مرحله قبل"
+>
+  {/* آیکون فلش ظریف به سمت چپ */}
+  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+  </svg>
+</button>
+
+
       <div className={styles.textWrap}>
         <h2 className={styles.title}>اضافه کردن آب</h2>
         <p className={styles.subtitle}>

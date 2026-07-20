@@ -73,3 +73,33 @@
     min-width: 40%; /* در موبایل دوتا دوتا کنار هم قرار می‌گیرن */
   }
 }
+
+
+/* ریسپانسیو - حالت موبایل (اسکرول افقی با چینش از بالا) */
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    justify-content: flex-start;
+    
+    /* === این خط آیتم‌ها را به جای وسط، به بالای کادر می‌چسباند === */
+    align-items: flex-start; 
+    
+    padding-bottom: 1rem; 
+    
+    /* مخفی کردن اسکرول‌بار مرورگر */
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .badgeItem {
+    min-width: 130px; 
+    flex-shrink: 0; 
+    
+    /* === این خط باعث میشه محتوای داخل خود کارت هم از بالا شروع بشه === */
+    justify-content: flex-start; 
+  }
+}

@@ -7,7 +7,7 @@ import { useSimulatorStore } from '@/store/useSimulatorStore';
 import styles from '@/styles/Stage3.module.scss';
 
 export default function Stage3_Mix() {
-  const { nextStage, activeTheme } = useSimulatorStore();
+  const { nextStage, prevStage, activeTheme } = useSimulatorStore();
   
   const [phase, setPhase] = useState<'first-mix' | 'resting' | 'second-mix'>('first-mix');
   const [mixProgress, setMixProgress] = useState(0);
@@ -134,6 +134,17 @@ export default function Stage3_Mix() {
 
   return (
     <div className={styles.stageContainer}>
+
+      <button 
+        className={styles.backButton} 
+        onClick={prevStage} 
+        aria-label="مرحله قبل"
+      >
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      
       <motion.div 
         className={styles.textWrap}
         key={phase} 

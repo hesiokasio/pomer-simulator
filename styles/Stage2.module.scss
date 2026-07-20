@@ -1,19 +1,25 @@
-/* styles/Stage2.module.scss */
-
-/* ... (کلاس‌های stageContainer, title, subtitle رو اگر داری نگه دار) ... */
-
+/* =========================================
+   ساختار مشترک و ثابت (Stage 2)
+========================================= */
 .stageContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  width: 100%;
   height: 100%;
-  text-align: center;
-  padding: 2rem;
+  min-height: 620px; 
+  overflow: hidden;
+  background-color: transparent;
 }
 
 .textWrap {
-  margin-bottom: 2rem;
+  position: absolute;
+  top: 8%; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 10;
 }
 
 .title {
@@ -21,26 +27,104 @@
   color: var(--text-primary, #333);
   margin-bottom: 0.5rem;
   font-weight: 700;
+  @media (max-width: 768px) { font-size: 1.4rem; }
 }
 
 .subtitle {
   font-size: 1.1rem;
   color: #777;
   font-weight: 300;
+  line-height: 1.6;
+  @media (max-width: 768px) { font-size: 0.95rem; }
+}
+
+.backButton {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 220px); 
+  transform: translateY(-50%);
+  width: 48px;  /* کمی بزرگ‌تر برای تاچ راحت‌تر و ظاهر لوکس‌تر */
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* استایل گلس‌مورفیسم مدرن */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: #333;
+  
+  /* سایه نرم و چندلایه برای ایجاد عمق */
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.06), 
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* انیمیشن فوق‌العاده نرم */
+  z-index: 50;
+
+  svg { 
+    width: 22px; 
+    height: 22px; 
+    transition: transform 0.3s ease; 
+  }
+  
+  &:hover {
+    background: #ffffff;
+    border-color: #c8a377; 
+    color: #c8a377; 
+    
+    /* یک درخشش ملایم با رنگ اصلی پروژه */
+    box-shadow: 
+      0 10px 25px rgba(200, 163, 119, 0.25), 
+      inset 0 2px 4px rgba(255, 255, 255, 1);
+    
+    /* دکمه کمی پاپ می‌شود و آیکون به عقب اشاره می‌کند */
+    transform: translateY(-50%) scale(1.05); 
+    svg { transform: translateX(-4px); }
+  }
+
+  @media (max-width: 768px) {
+    top: 20px;
+    left: 20px;
+    transform: none; 
+    width: 42px;
+    height: 42px;
+    
+    &:hover {
+      transform: scale(1.05); /* توی موبایل موقع هاور شدن، translateY رو باطل می‌کنیم */
+    }
+  }
+}
+
+.bucketWrapper {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 5;
 }
 
 /* =========================================
-   محدوده و استایل لیوان آب (پیمانه)
+   المان‌های اختصاصی (Stage 2)
 ========================================= */
-/* در فایل styles/Stage2.module.scss این بخش‌ها رو آپدیت کن */
-
 .cupArea {
+  position: absolute;
+  top: calc(55% - 190px); /* <--- این خط تغییر کرد تا لیوان بیاد پایین‌تر */
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2.5rem;
   height: 120px;
-  position: relative;
   z-index: 10;
 }
 
@@ -62,6 +146,15 @@
   transform-origin: center center; 
 }
 
+.waterInside {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(168, 192, 203, 0.4) 0%, rgba(168, 192, 203, 0.7) 100%);
+  border-top: 2px solid rgba(255,255,255,0.6); 
+  border-radius: 0 0 14px 14px;
+  z-index: 1;
+  transform-origin: bottom left; 
+}
+
 .bubbles {
   position: absolute;
   width: 100%;
@@ -73,78 +166,25 @@
 
   span {
     position: absolute;
-    bottom: -10px; /* شروع از زیر لیوان */
+    bottom: -10px; 
     background: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
     animation: floatUp 1.8s infinite ease-in;
   }
 }
 
-/* انیمیشن شناور شدن حباب‌ها به سمت بالا */
 @keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(0.8);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-80px) scale(1.2); /* حرکت به سمت بالا و کمی بزرگتر شدن */
-    opacity: 0;
-  }
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-80px) scale(1.2); opacity: 0; }
 }
 
-/* محفظه‌ی جدید جریان آب که SVG ارگانیک داخل آن است */
 .waterStreamContainer {
   position: absolute;
-  width: 18px; /* کمی پهن‌تر برای نمایش انحنای مایع */
+  width: 18px; 
   z-index: 5;
   filter: drop-shadow(0 2px 4px rgba(168, 192, 203, 0.4)) blur(0.5px);
   transform-origin: top center;
-}
-
-
-.waterInside {
-  width: 100%;
-  background: linear-gradient(180deg, rgba(168, 192, 203, 0.4) 0%, rgba(168, 192, 203, 0.7) 100%);
-  border-top: 2px solid rgba(255,255,255,0.6); 
-  border-radius: 0 0 14px 14px;
-  z-index: 1;
-  
-  /* اضافه کردن این خط کلیدی است: */
-  transform-origin: bottom left; /* باعث میشه موقع کوچیک شدن به کنج سمت چپ بچسبه */
-}
-
-.handIndicator {
-  position: absolute;
-  top: -10px;
-  right: 15px; /* کمی به راست شیفت دادیم تا بیرون‌تر باشه */
-  color: #c8a377;
-  pointer-events: none;
-  z-index: 20;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-}
-
-.waterStream {
-  position: absolute;
-  width: 8px;
-  background: linear-gradient(180deg, rgba(168, 192, 203, 0.8) 0%, rgba(168, 192, 203, 0.2) 100%);
-  border-radius: 4px;
-  z-index: 5;
-  filter: blur(1px); 
-}
-
-/* =========================================
-   کلاس‌های قوطی و پودر (دقیقاً مشابه استیج ۱)
-========================================= */
-.bucketWrapper {
-  position: relative;
-  width: 260px;
-  height: 260px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
 }
 
 .bucket {
@@ -181,24 +221,16 @@
   transition: fill 0.4s ease-in-out; 
 }
 
-
-
 .risingWaterInBucket {
   position: absolute;
-  bottom: 0; /* شروع از کف قوطی */
+  bottom: 0; 
   left: 0;
   width: 100%;
-  
-  /* رنگ آبی ملایم */
   background: linear-gradient(180deg, rgba(168, 192, 203, 0.4) 0%, rgba(168, 192, 203, 0.7) 100%);
-  
-  /* افکت غوطه‌ور شدن پودر زیر آب */
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  
   border-top: 2px solid rgba(255, 255, 255, 0.7);
   box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.3);
-  
   z-index: 2; 
-  border-radius: 0 0 40px 40px; /* هماهنگ با فرمِ گردِ پایین قوطی */
+  border-radius: 0 0 40px 40px; 
 }

@@ -1,13 +1,15 @@
 // components/stages/Stage4_ApplyTile.tsx
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSimulatorStore } from '@/store/useSimulatorStore';
+import { useRouter } from 'next/navigation'; // اضافه شدن روتر Next.js
 import styles from '@/styles/Stage4.module.scss';
 
 export default function Stage4_ApplyTile() {
-  const { activeTheme, nextStage } = useSimulatorStore();
+  const { activeTheme, resetSimulator, prevStage } = useSimulatorStore();
+  const router = useRouter(); // تعریف روتر برای جابه‌جایی صفحات
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,25 +17,10 @@ export default function Stage4_ApplyTile() {
 
   const [isDrawing, setIsDrawing] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
-  const [drawDistance, setDrawDistance] = useState(0);
-  const [isFinished, setIsFinished] = useState(false);
-
-  const GOAL_DISTANCE = 1000; 
-  const progressPercentage = Math.min((drawDistance / GOAL_DISTANCE) * 100, 100);
-
-  useEffect(() => {
-    if (progressPercentage >= 100 && !isFinished) {
-      setIsFinished(true);
-      setTimeout(() => {
-        nextStage(); 
-      }, 1500);
-    }
-  }, [progressPercentage, isFinished, nextStage]);
 
   const startDrawing = (e: React.PointerEvent) => {
-    if (isFinished) return;
     setIsDrawing(true);
-    setHasStarted(true); // به محض لمس، hasStarted ترو میشه و دست غیب میشه
+    setHasStarted(true); // غیب شدن دست راهنما
     
     const rect = containerRef.current?.getBoundingClientRect();
     if (rect) {
@@ -44,8 +31,13 @@ export default function Stage4_ApplyTile() {
     }
   };
 
+  // تابع اصلاح شده برای انتقال به صفحه اصلی
+  const goToHome = () => {
+    router.push('/'); // کاربر را دقیقاً به روت اصلی سایت هدایت می‌کند
+  };
+
   const draw = (e: React.PointerEvent) => {
-    if (!isDrawing || !lastPos.current || isFinished) return;
+    if (!isDrawing || !lastPos.current) return;
     
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
@@ -66,11 +58,6 @@ export default function Stage4_ApplyTile() {
     ctx.lineTo(currentX, currentY);
     ctx.stroke();
 
-    const dist = Math.sqrt(
-      Math.pow(currentX - lastPos.current.x, 2) + Math.pow(currentY - lastPos.current.y, 2)
-    );
-    setDrawDistance((prev) => prev + dist);
-
     lastPos.current = { x: currentX, y: currentY };
   };
 
@@ -81,6 +68,18 @@ export default function Stage4_ApplyTile() {
 
   return (
     <div className={styles.stageContainer}>
+      
+      {/* دکمه بازگشت */}
+      <button 
+        className={styles.backButton} 
+        onClick={prevStage} 
+        aria-label="مرحله قبل"
+      >
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
       <motion.div 
         className={styles.textWrap}
         initial={{ opacity: 0, y: 10 }}
@@ -89,26 +88,18 @@ export default function Stage4_ApplyTile() {
         <h2 className={styles.title}>اجرای آسان و بی‌دردسر!</h2>
         <p className={styles.subtitle}>
           بدون نیاز به نصاب، خودتان دست به کار شوید. 
-          <br/>
-          انگشت خود را روی درزها بکشید تا معجزه پومر را ببینید.
         </p>
       </motion.div>
 
       <div className={styles.tileWrapper}>
         
-        {/* دست راهنما: فیکس شده روی درز اول سمت چپ */}
+        {/* دست راهنما */}
         <AnimatePresence>
           {!hasStarted && (
             <motion.div
               className={styles.handIndicator}
-              style={{ 
-                color: '#b3b3b3',
-                left: '83px', // تنظیم دقیق روی درز اول (کمی چپ‌تر)
-                top: '40px'
-              }}
-              animate={{ 
-                y: [0, 80, 0] 
-              }}
+              style={{ color: '#b3b3b3', left: '83px', top: '40px' }}
+              animate={{ y: [0, 80, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
               exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
             >
@@ -127,37 +118,25 @@ export default function Stage4_ApplyTile() {
           onPointerUp={stopDrawing}
           onPointerLeave={stopDrawing}
         >
-          <canvas 
-            ref={canvasRef} 
-            width={300} 
-            height={300} 
-            className={styles.drawingCanvas} 
-          />
+          <canvas ref={canvasRef} width={300} height={300} className={styles.drawingCanvas} />
           
           <div className={styles.tilesGrid}>
-            {[...Array(9)].map((_, i) => (
-              <div key={i} className={styles.tile}></div>
-            ))}
+            {[...Array(9)].map((_, i) => <div key={i} className={styles.tile}></div>)}
           </div>
         </div>
-
-        <AnimatePresence>
-          {isFinished && (
-            <motion.div 
-              className={styles.successOverlay}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-            >
-              <div className={styles.checkIcon}>✓</div>
-              <div className={styles.successText}>عالی بود!</div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
 
-      <div className={styles.progressContainer}>
-        <div className={styles.progressBar} style={{ width: `${progressPercentage}%`, backgroundColor: activeTheme.hex }} />
-      </div>
+      {/* دکمه‌های پایانی - همیشه در صفحه با انیمیشن در لحظه ورود ظاهر می‌شوند */}
+      <motion.div 
+        className={styles.actionButtons}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
+      >
+        <button onClick={resetSimulator} className={styles.secondaryBtn}>اجرای دوباره</button>
+        <button onClick={goToHome} className={styles.primaryBtn}>ورود به سایت</button> 
+      </motion.div>
+
     </div>
   );
 }

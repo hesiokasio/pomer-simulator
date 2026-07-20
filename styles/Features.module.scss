@@ -3,7 +3,8 @@
 
 .featuresSection {
   width: 100%;
-  padding: 6rem $padding-x;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
   background-color: $bg-light;
   position: relative;
 }
@@ -139,5 +140,61 @@
   
   .header .title {
     font-size: 2.5rem;
+  }
+}
+
+
+
+/* ریسپانسیو برای موبایل و تبلت */
+@media (max-width: 992px) {
+  
+  .header .title {
+    font-size: 20px; /* سایز تیتر کاملاً استاندارد و هماهنگ با بقیه سکشن‌ها */
+  }
+
+  .grid {
+    gap: 1rem; /* فاصله بین کارت‌ها تو موبایل کمی کمتر میشه تا جا بازتر بشه */
+  }
+
+  /* تبدیل به دو ستونه (هر کارت 6 ستون از 12 ستون رو میگیره) */
+  .featureCard:nth-child(n) {
+    grid-column: span 6; 
+  }
+  
+  /* --- تنظیم سایز اجزای داخل کارت‌ها برای حالت دو ستونه موبایل --- */
+  
+  .cardNumber {
+    font-size: 3rem; /* عدد سایه محو کوچکتر میشه */
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .iconWrapper {
+    width: 42px;
+    height: 42px;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .cardTitle {
+    font-size: 15px; /* تیتر ویژگی‌ها کوچکتر میشه تا تو دو ستون جا بشه */
+    margin-bottom: 0.5rem;
+  }
+
+  .cardDesc {
+    font-size: 12px; /* متن توضیحات جمع‌وجورتر */
+    line-height: 1.6;
+  }
+}
+
+/* برای گوشی‌های خیلی خیلی کوچیک (زیر 400 پیکسل) که دو ستونه بودن باعث ناخوانایی میشه */
+@media (max-width: 425px) {
+  .featureCard:nth-child(n) {
+    grid-column: span 12; /* تو گوشی‌های خیلی کوچیک مثل آیفون SE میشه یک ستونه */
   }
 }

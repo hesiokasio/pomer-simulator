@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from '@/styles/Layout.module.scss';
@@ -7,31 +8,39 @@ import Image from 'next/image';
 
 export default function Header() {
   const pathname = usePathname();
+  // فقط برای کنترل منوی موبایل
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
         
-        {/* <div className={styles.headerActions}>
-          <button className={styles.buyBtn}>خرید محصول</button>
-        </div> */}
-        
-        <nav className={styles.nav}>
-         <Link href="/" className={pathname === '/' ? styles.active : ''}>خانه</Link>
-         <Link href="/tutorial" className={pathname === '/tutorial' ? styles.active : ''}>آموزش اجرا</Link>
-         <Link href="/#features">ویژگی‌ها</Link>
-         <Link href="/#cta">ثبت سفارش</Link>
-         <Link href="/about" className={pathname === '/about' ? styles.active : ''}>درباره ما</Link>
+        {/* دکمه همبرگری - در دسکتاپ مخفی است */}
+        <button 
+          className={`${styles.hamburgerBtn} ${isMobileMenuOpen ? styles.open : ''}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* منوی لینک‌ها - در دسکتاپ عادی، در موبایل کشویی */}
+        <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.navActive : ''}`}>
+         <Link href="/" className={pathname === '/' ? styles.active : ''} onClick={() => setIsMobileMenuOpen(false)}>خانه</Link>
+         <Link href="/tutorial" className={pathname === '/tutorial' ? styles.active : ''} onClick={() => setIsMobileMenuOpen(false)}>آموزش اجرا</Link>
+         <Link href="/#features" onClick={() => setIsMobileMenuOpen(false)}>ویژگی‌ها</Link>
+         <Link href="/#cta" onClick={() => setIsMobileMenuOpen(false)}>ثبت سفارش</Link>
+         <Link href="/about" className={pathname === '/about' ? styles.active : ''} onClick={() => setIsMobileMenuOpen(false)}>درباره ما</Link>
         </nav>
         
-
         <Link href="/" className={styles.logo}>
           <Image 
             src="/pomer-light.svg" 
             alt="لوگوی پومر" 
-            width={120} // عرض لوگو - با توجه به فایل اصلیت می‌تونی کم و زیادش کنی
-            height={40} // ارتفاع لوگو
-            priority // به مرورگر میگه این عکس خیلی مهمه و همون اول لودش کن
+            width={120} 
+            height={40} 
+            priority 
           />
         </Link>
       </div>

@@ -1,4 +1,3 @@
-// src/store/useSimulatorStore.ts
 import { create } from 'zustand';
 
 // ۱. آرایه رنگ‌ها را اینجا قرار می‌دهیم تا در کل اپلیکیشن در دسترس باشد
@@ -18,17 +17,20 @@ interface SimulatorState {
   isResting: boolean;         // آیا در تایم استراحت شیمیایی هستیم؟
   isCanvasRevealed: boolean;  // آیا کاربر کاشی را کامل تمیز کرده؟
   
-  // ۲. متغیر مربوط به تمِ رنگی انتخاب شده
+  // متغیر مربوط به تمِ رنگی انتخاب شده
   activeTheme: typeof POWDER_THEMES[0];
 
   // اکشن‌ها
   nextStage: () => void;
+  prevStage: () => void;      // تابع برگشت در رابط کاربری
+  resetSimulator: () => void; // تابع اجرای دوباره (ریست کل شبیه‌ساز)
+  
   addWater: () => void;
   setMixed: (status: boolean) => void;
   setResting: (status: boolean) => void;
   setCanvasRevealed: (status: boolean) => void;
   
-  // ۳. اکشن برای تغییر رنگ
+  // اکشن برای تغییر رنگ
   setActiveTheme: (theme: typeof POWDER_THEMES[0]) => void;
 }
 
@@ -39,15 +41,35 @@ export const useSimulatorStore = create<SimulatorState>((set) => ({
   isResting: false,
   isCanvasRevealed: false,
   
-  // ۴. تنظیم طوسی به عنوان رنگ پیش‌فرض در شروع کار
+  // تنظیم طوسی به عنوان رنگ پیش‌فرض در شروع کار
   activeTheme: POWDER_THEMES[0],
 
   nextStage: () => set((state) => ({ currentStage: Math.min(state.currentStage + 1, 4) })),
+  
+  // آپدیت تابع برگشت برای ریست کردن کامل آب در صورت برگشت به مرحله دوم
+  prevStage: () => set((state) => {
+    const targetStage = Math.max(state.currentStage - 1, 1);
+    return {
+      currentStage: targetStage,
+      // اگر به مرحله دوم برگشتیم، آب را روی ۰ تنظیم کن تا کاربر مجبور شود دوباره پیمانه‌ها را بریزد
+      ...(targetStage === 2 ? { waterScoops: 0 } : {}),
+    };
+  }),
+
+  // تابع ریست برای پایان شبیه‌ساز (برگشت به حالت کارخانه)
+  resetSimulator: () => set({ 
+    currentStage: 1, 
+    waterScoops: 0,
+    isMixed: false,
+    isResting: false,
+    isCanvasRevealed: false
+  }),
+  
   addWater: () => set((state) => ({ waterScoops: Math.min(state.waterScoops + 1, 3) })),
   setMixed: (status) => set({ isMixed: status }),
   setResting: (status) => set({ isResting: status }),
   setCanvasRevealed: (status) => set({ isCanvasRevealed: status }),
   
-  // ۵. تابع تغییر رنگ
+  // تابع تغییر رنگ
   setActiveTheme: (theme) => set({ activeTheme: theme }),
 }));
