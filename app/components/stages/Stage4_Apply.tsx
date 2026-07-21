@@ -4,12 +4,12 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSimulatorStore } from '@/store/useSimulatorStore';
-import { useRouter } from 'next/navigation'; // اضافه شدن روتر Next.js
+import { useRouter } from 'next/navigation';
 import styles from '@/styles/Stage4.module.scss';
 
 export default function Stage4_ApplyTile() {
   const { activeTheme, resetSimulator, prevStage } = useSimulatorStore();
-  const router = useRouter(); // تعریف روتر برای جابه‌جایی صفحات
+  const router = useRouter();
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,7 +20,7 @@ export default function Stage4_ApplyTile() {
 
   const startDrawing = (e: React.PointerEvent) => {
     setIsDrawing(true);
-    setHasStarted(true); // غیب شدن دست راهنما
+    setHasStarted(true);
     
     const rect = containerRef.current?.getBoundingClientRect();
     if (rect) {
@@ -31,9 +31,8 @@ export default function Stage4_ApplyTile() {
     }
   };
 
-  // تابع اصلاح شده برای انتقال به صفحه اصلی
   const goToHome = () => {
-    router.push('/'); // کاربر را دقیقاً به روت اصلی سایت هدایت می‌کند
+    router.push('/');
   };
 
   const draw = (e: React.PointerEvent) => {
@@ -69,7 +68,6 @@ export default function Stage4_ApplyTile() {
   return (
     <div className={styles.stageContainer}>
       
-      {/* دکمه بازگشت */}
       <button 
         className={styles.backButton} 
         onClick={prevStage} 
@@ -93,7 +91,6 @@ export default function Stage4_ApplyTile() {
 
       <div className={styles.tileWrapper}>
         
-        {/* دست راهنما */}
         <AnimatePresence>
           {!hasStarted && (
             <motion.div
@@ -126,7 +123,6 @@ export default function Stage4_ApplyTile() {
         </div>
       </div>
 
-      {/* دکمه‌های پایانی - همیشه در صفحه با انیمیشن در لحظه ورود ظاهر می‌شوند */}
       <motion.div 
         className={styles.actionButtons}
         initial={{ opacity: 0, y: 20 }}

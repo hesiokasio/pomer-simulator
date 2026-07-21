@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from '@/styles/Products.module.scss';
 
-// متون سئوشده و خلاصه‌تر با تفکیک وزن
 const products = [
   {
     id: 1,
@@ -61,7 +60,6 @@ export default function ProductsSection() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
             >
-              {/* بخش عکس محصول */}
               <div className={styles.imageWrapper}>
                 {product.imageSrc ? (
                   <Image 
@@ -74,13 +72,10 @@ export default function ProductsSection() {
                   <span className={styles.placeholderText}>محل قرارگیری عکس محصول</span>
                 )}
                 
-                {/* بج وزن رو آوردیم اینجا تا بتونه روی مرز عکس قرار بگیره */}
                 <span className={styles.weightBadge}>{product.weight}</span>
               </div>
 
-              {/* بخش محتوای متنی */}
               <div className={styles.cardContent}>
-                {/* بج از اینجا حذف شد */}
                 <h3 className={styles.cardTitle}>{product.title}</h3>
                 <p className={styles.cardDesc}>{product.desc}</p>
               </div>

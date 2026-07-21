@@ -1,6 +1,4 @@
-/* =========================================
-   ساختار مشترک و ثابت (Stage 2)
-========================================= */
+
 .stageContainer {
   position: relative;
   width: 100%;
@@ -38,32 +36,27 @@
   @media (max-width: 768px) { font-size: 0.95rem; }
 }
 
-.backButton {
+.backButton, .nextButton {
   position: absolute;
   top: 50%;
-  left: calc(50% - 220px); 
   transform: translateY(-50%);
-  width: 48px;  /* کمی بزرگ‌تر برای تاچ راحت‌تر و ظاهر لوکس‌تر */
+  width: 48px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  /* استایل گلس‌مورفیسم مدرن */
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 50%;
   color: #333;
-  
-  /* سایه نرم و چندلایه برای ایجاد عمق */
   box-shadow: 
     0 8px 20px rgba(0, 0, 0, 0.06), 
     inset 0 2px 4px rgba(255, 255, 255, 0.8);
     
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* انیمیشن فوق‌العاده نرم */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 50;
 
   svg { 
@@ -77,26 +70,46 @@
     border-color: #c8a377; 
     color: #c8a377; 
     
-    /* یک درخشش ملایم با رنگ اصلی پروژه */
     box-shadow: 
       0 10px 25px rgba(200, 163, 119, 0.25), 
       inset 0 2px 4px rgba(255, 255, 255, 1);
     
-    /* دکمه کمی پاپ می‌شود و آیکون به عقب اشاره می‌کند */
     transform: translateY(-50%) scale(1.05); 
-    svg { transform: translateX(-4px); }
   }
 
   @media (max-width: 768px) {
     top: 20px;
-    left: 20px;
     transform: none; 
     width: 42px;
     height: 42px;
     
     &:hover {
-      transform: scale(1.05); /* توی موبایل موقع هاور شدن، translateY رو باطل می‌کنیم */
+      transform: scale(1.05);
     }
+  }
+}
+
+.backButton {
+  left: calc(50% - 220px); 
+  
+  &:hover svg { 
+    transform: translateX(-4px); 
+  }
+  
+  @media (max-width: 768px) { 
+    left: 20px; 
+  }
+}
+
+.nextButton {
+  right: calc(50% - 220px); 
+  
+  &:hover svg { 
+    transform: translateX(4px); 
+  }
+  
+  @media (max-width: 768px) { 
+    right: 20px; 
   }
 }
 
@@ -113,12 +126,9 @@
   z-index: 5;
 }
 
-/* =========================================
-   المان‌های اختصاصی (Stage 2)
-========================================= */
 .cupArea {
   position: absolute;
-  top: calc(55% - 190px); /* <--- این خط تغییر کرد تا لیوان بیاد پایین‌تر */
+  top: calc(55% - 190px);
   left: 50%;
   transform: translateX(-50%);
   display: flex;

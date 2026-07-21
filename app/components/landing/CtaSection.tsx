@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import styles from '@/styles/Cta.module.scss';
-import BeforeAfterSlider from './BeforeAfterSlider'; // <--- 1. این رو اضافه کن
+import BeforeAfterSlider from './BeforeAfterSlider';
 
 export default function CtaSection() {
   return (
@@ -17,7 +17,6 @@ export default function CtaSection() {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         
-        {/* ستون راست: محتوا و دکمه‌ها (کدهای خودت دست‌نخورده) */}
         <div className={styles.textContent}>
           <motion.h2 
             className={styles.description}
@@ -37,9 +36,8 @@ export default function CtaSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.5 }}
           >
-            {/* دکمه اول: سفارش در واتس‌اپ (لینک مستقیم با متن آماده) */}
             <a 
-              href="https://wa.me/989120000000?text=سلام،%20من%20از%20سایت%20پومر%20پیام%20می‌دم%20و%20قصد%20سفارش%20دارم." 
+              href="https://wa.me/989043719109?text=سلام،%20من%20از%20سایت%20پومر%20پیام%20می‌دم%20و%20قصد%20سفارش%20دارم." 
               target="_blank" 
               rel="noopener noreferrer"
               className={styles.btnPrimary}
@@ -51,7 +49,6 @@ export default function CtaSection() {
               سفارش در واتس‌اپ
             </a>
 
-            {/* دکمه دوم: تماس تلفنی / تلگرام */}
             <a 
               href="tel:+989120000000" 
               className={styles.btnSecondary}
@@ -65,18 +62,11 @@ export default function CtaSection() {
           </motion.div>
         </div>
 
-{/* 
-        <button className={styles.btnPrimary}>خرید پکیج پومر</button>
-            <Link href="/tutorial" className={styles.btnSecondary}>شبیه‌ساز آموزش اجرا</Link> */}
-
-        {/* ستون چپ: اسلایدر قبل و بعد */}
         <div className={styles.imageContent}>
-          {/* <div className={styles.imageBg}></div> این رو پاک کردیم */}
           
-          {/* 2. اینجا از کامپوننت اسلایدر استفاده می‌کنیم */}
           <BeforeAfterSlider 
-            beforeImage="/before.jpg" // عکس درزهای سیاه رو با این اسم ذخیره کن
-            afterImage="/after.jpg"   // عکس درزهای سفید رو با این اسم ذخیره کن
+            beforeImage="/before.jpg"
+            afterImage="/after.jpg"
           />
           
         </div>

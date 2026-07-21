@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 
-// ۱. آرایه رنگ‌ها را اینجا قرار می‌دهیم تا در کل اپلیکیشن در دسترس باشد
 export const POWDER_THEMES = [
   { id: 'lightGray', hex: '#cccccc', name: 'طوسی', colors: { light: '#f4f4f4', shadow: '#e8e8e8', dot: '#cccccc', highlight: '#ffffff' } },
   { id: 'darkGray', hex: '#666666', name: 'طوسی تیره', colors: { light: '#8c8c8c', shadow: '#737373', dot: '#595959', highlight: '#a6a6a6' } },
@@ -11,26 +10,23 @@ export const POWDER_THEMES = [
 ];
 
 interface SimulatorState {
-  currentStage: number;       // مرحله فعلی (۱ تا ۴)
-  waterScoops: number;        // تعداد پیمانه‌های آب ریخته شده (۰ تا ۳)
-  isMixed: boolean;           // آیا خمیر کاملاً هم‌زده شده؟
-  isResting: boolean;         // آیا در تایم استراحت شیمیایی هستیم؟
-  isCanvasRevealed: boolean;  // آیا کاربر کاشی را کامل تمیز کرده؟
+  currentStage: number;
+  waterScoops: number;
+  isMixed: boolean;
+  isResting: boolean;
+  isCanvasRevealed: boolean;
   
-  // متغیر مربوط به تمِ رنگی انتخاب شده
   activeTheme: typeof POWDER_THEMES[0];
 
-  // اکشن‌ها
   nextStage: () => void;
-  prevStage: () => void;      // تابع برگشت در رابط کاربری
-  resetSimulator: () => void; // تابع اجرای دوباره (ریست کل شبیه‌ساز)
+  prevStage: () => void;
+  resetSimulator: () => void;
   
   addWater: () => void;
   setMixed: (status: boolean) => void;
   setResting: (status: boolean) => void;
   setCanvasRevealed: (status: boolean) => void;
   
-  // اکشن برای تغییر رنگ
   setActiveTheme: (theme: typeof POWDER_THEMES[0]) => void;
 }
 
@@ -40,23 +36,30 @@ export const useSimulatorStore = create<SimulatorState>((set) => ({
   isMixed: false,
   isResting: false,
   isCanvasRevealed: false,
-  
-  // تنظیم طوسی به عنوان رنگ پیش‌فرض در شروع کار
   activeTheme: POWDER_THEMES[0],
 
-  nextStage: () => set((state) => ({ currentStage: Math.min(state.currentStage + 1, 4) })),
+  nextStage: () => set((state) => {
+    const targetStage = Math.min(state.currentStage + 1, 4);
+    return {
+      currentStage: targetStage,
+      waterScoops: 0,
+      isMixed: false,
+      isResting: false,
+      isCanvasRevealed: false
+    };
+  }),
   
-  // آپدیت تابع برگشت برای ریست کردن کامل آب در صورت برگشت به مرحله دوم
   prevStage: () => set((state) => {
     const targetStage = Math.max(state.currentStage - 1, 1);
     return {
       currentStage: targetStage,
-      // اگر به مرحله دوم برگشتیم، آب را روی ۰ تنظیم کن تا کاربر مجبور شود دوباره پیمانه‌ها را بریزد
-      ...(targetStage === 2 ? { waterScoops: 0 } : {}),
+      waterScoops: 0,
+      isMixed: false,
+      isResting: false,
+      isCanvasRevealed: false
     };
   }),
 
-  // تابع ریست برای پایان شبیه‌ساز (برگشت به حالت کارخانه)
   resetSimulator: () => set({ 
     currentStage: 1, 
     waterScoops: 0,
@@ -69,7 +72,5 @@ export const useSimulatorStore = create<SimulatorState>((set) => ({
   setMixed: (status) => set({ isMixed: status }),
   setResting: (status) => set({ isResting: status }),
   setCanvasRevealed: (status) => set({ isCanvasRevealed: status }),
-  
-  // تابع تغییر رنگ
   setActiveTheme: (theme) => set({ activeTheme: theme }),
 }));

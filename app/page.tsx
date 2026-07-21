@@ -8,7 +8,6 @@ import SpecsSection from '@/app/components/landing/SpecsSection';
 import ProductsSection from './components/landing/ProductsSection';
 import CtaSection from '@/app/components/landing/CtaSection';
 import CalculatorSection from '@/app/components/landing/CalculatorSection';
-// کامپوننت‌های بعدی هم اینجا ایمپورت میشن
 
 export default function LandingPage() {
   return (

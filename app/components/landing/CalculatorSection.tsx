@@ -41,7 +41,6 @@ export default function CalculatorSection() {
           transition={{ duration: 0.7 }}
         >
           
-          {/* ستون راست: متن‌ها و انتخاب محصول */}
           <div className={styles.infoSide}>
             <div className={styles.header}>
               <h2>محاسبه‌گر هوشمند مصرف</h2>
@@ -50,15 +49,13 @@ export default function CalculatorSection() {
 
             <div className={styles.tabs} dir="rtl">
               
-              {/* دکمه پودر بندکشی */}
               <button 
                 className={`${styles.tab} ${activeTab === 'powder' ? styles.active : ''}`}
                 onClick={() => setActiveTab('powder')}
               >
-                {/* بک‌گراند متحرک فقط روی تب فعال رندر می‌شود */}
                 {activeTab === 'powder' && (
                   <motion.div
-                    layoutId="activeTabBackground" // این آیدی باعث حرکت جادویی بین تب‌ها می‌شه
+                    layoutId="activeTabBackground"
                     className={styles.activeTabBackground}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
@@ -66,7 +63,6 @@ export default function CalculatorSection() {
                 <span className={styles.tabText}>پودر بندکشی</span>
               </button>
 
-              {/* دکمه چسب کاشی */}
               <button 
                 className={`${styles.tab} ${activeTab === 'adhesive' ? styles.active : ''}`}
                 onClick={() => setActiveTab('adhesive')}
@@ -83,7 +79,6 @@ export default function CalculatorSection() {
             </div>
           </div>
 
-          {/* ستون چپ: پنل دریافت عدد و نمایش نتیجه */}
           <div className={styles.actionSide}>
             <div className={styles.inputWrapper}>
               <input 

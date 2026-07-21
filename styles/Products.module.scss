@@ -44,7 +44,7 @@
   p{
     font-size: 16px;
     line-height: 1.8;
-    color: #86868b; /* خاکستریِ خوانا و مینیمال */
+    color: #86868b;
     margin-bottom: 30px;
     font-weight: 400;
   }
@@ -76,7 +76,6 @@
   }
 }
 
-/* جایگاه عکس محصول */
 .imageWrapper {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -93,10 +92,6 @@
   }
 }
 
-/* styles/Products.module.scss */
-
-// ... کدهای قبلی تا قبل از .cardContent دست نخورده بماند ...
-
 .cardContent {
   padding: 1.5rem 1.5rem;
   text-align: center;
@@ -105,26 +100,18 @@
   flex: 1;
 }
 
-/* استایل بج وزن - مینیمال و شیک */
-/* استایل بج وزن - چسبیده به چپ و روی مرز عکس */
-/* استایل بج وزن - عرض ثابت و هم‌اندازه برای تمام کارت‌ها */
+
 .weightBadge {
   position: absolute;
   left: 0;
   bottom: 0;
   transform: translateY(50%);
-  
   background-color: $primary-color;
   color: #fff;
-  
-  /* --- تغییرات جدید برای عرض ثابت --- */
-  width: 90px; /* یک عرض ثابت و شیک برای هر سه بج */
-  text-align: center; /* قرار دادن نوشته دقیقاً در وسط بج */
-  padding: 0.4rem 0; /* پدینگ چپ و راست رو برداشتیم چون حالا عرض ثابت داریم */
-  /* ----------------------------------- */
-  
+  width: 90px;
+  text-align: center;
+  padding: 0.4rem 0;
   border-radius: 0 20px 20px 0; 
-  
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -147,7 +134,6 @@
   flex: 1;
 }
 
-/* ریسپانسیو */
 @media (max-width: 992px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);

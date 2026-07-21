@@ -11,7 +11,7 @@ export default function Stage3_Mix() {
   
   const [phase, setPhase] = useState<'first-mix' | 'resting' | 'second-mix'>('first-mix');
   const [mixProgress, setMixProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(300);
   
   const isTransitioningRef = useRef(false); 
 
@@ -82,12 +82,15 @@ export default function Stage3_Mix() {
   };
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (phase === 'resting' && timeLeft > 0) {
-      timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
-    } else if (phase === 'resting' && timeLeft === 0) {
-      setPhase('second-mix'); 
-    }
+     let timer: NodeJS.Timeout;
+
+  if (phase === 'resting' && timeLeft > 0) {
+    timer = setTimeout(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 20);
+  } else if (phase === 'resting' && timeLeft === 0) {
+    setPhase('second-mix');
+  }
     return () => clearTimeout(timer);
   }, [phase, timeLeft]);
 
@@ -109,27 +112,21 @@ export default function Stage3_Mix() {
     pasteOpacity = 1;
   }
 
-  // ==========================================
-  // جادوی پف کردن خمیر در دور دوم (Path Morphing)
-  // متغیر p مقداری بین 0 تا 1 است که نشان‌دهنده میزان پیشرفت هم‌زدن در دور دوم است.
-  // ==========================================
   const p = phase === 'second-mix' ? Math.min(mixProgress / SECOND_MIX_THRESHOLD, 1) : 0;
-  
-  // محاسبه زنده مختصات SVG بر اساس میزان هم زدن (هرچه p بیشتر شود، خمیر بالاتر می‌آید)
   const clipPathD = `M -10 ${50 - p * 20} Q 40 ${30 - p * 15}, 100 ${55 - p * 20} T 220 ${40 - p * 25} L 220 160 L -10 160 Z`;
   const wave1D = `M -10 ${70 - p * 25} Q 70 ${40 - p * 20}, 140 ${100 - p * 30} T 250 ${80 - p * 25} L 250 180 L -10 180 Z`;
   const wave2D = `M -10 ${110 - p * 30} Q 50 ${140 - p * 30}, 120 ${90 - p * 35} T 250 ${110 - p * 30} L 250 180 L -10 180 Z`;
 
   const getTitle = () => {
-    if (phase === 'first-mix') return 'هم‌زدن خمیر';
+    if (phase === 'first-mix') return 'هم‌زدن اولیه';
     if (phase === 'resting') return 'استراحت شیمیایی پلیمرها';
     return 'هم‌زدن نهایی';
   };
 
   const getSubtitle = () => {
-    if (phase === 'first-mix') return 'ابزار را روی سطل بکشید و هم بزنید تا خمیر یکدست شود';
-    if (phase === 'resting') return '۵ دقیقه صبر کنید تا مواد قوام بیایند (شبیه‌سازی: ۵ ثانیه)';
-    return 'خمیر را یک بار دیگر هم بزنید تا کاملاً آماده و پف‌دار شود';
+    if (phase === 'first-mix') return 'همزن را داخل قوطی بچرخان تا مواد با هم مخلوط شوند و خمیر آماده شود.';
+    if (phase === 'resting') return 'حالا خمیر را ۵ دقیقه استراحت بده.';
+    return 'یک دور دیگر خمیر را هم بزن تا بافتش کاملا نرم، خامه‌ای و آماده‌ی کار شود.';
   };
 
   return (
@@ -142,6 +139,16 @@ export default function Stage3_Mix() {
       >
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button 
+        className={styles.nextButton} 
+        onClick={nextStage} 
+        aria-label="مرحله بعد"
+      >
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
         </svg>
       </button>
       
@@ -165,7 +172,10 @@ export default function Stage3_Mix() {
               exit={{ opacity: 0, y: -20, scale: 0.8 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
             >
-              <span>00:0{timeLeft}</span>
+              <span>
+                 {String(Math.floor(timeLeft / 60)).padStart(2, '0')}:
+                 {String(timeLeft % 60).padStart(2, '0')}
+              </span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '22px', height: '22px' }}>
                 <circle cx="12" cy="12" r="10"></circle>
                 <polyline points="12 6 12 12 16 14"></polyline>
@@ -179,7 +189,6 @@ export default function Stage3_Mix() {
             <svg className={styles.pasteSvg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150' preserveAspectRatio='none'>
               <defs>
                 <clipPath id='pasteClip'>
-                  {/* اعمال مختصات داینامیک */}
                   <path d={clipPathD} />
                 </clipPath>
               </defs>
@@ -188,7 +197,6 @@ export default function Stage3_Mix() {
                 <path d={wave1D} fill={activeTheme.colors.light} opacity='0.15' />
                 <path d={wave2D} fill={activeTheme.colors.dot} opacity='0.25' />
                 
-                {/* حباب‌ها هم با پف کردن خمیر کمی بالا میان */}
                 <g transform={`translate(0, -${p * 20})`}>
                   <circle cx='40' cy='90' r='1.5' fill={activeTheme.colors.highlight} opacity='0.3'/>
                   <circle cx='130' cy='115' r='2' fill={activeTheme.colors.highlight} opacity='0.2'/>

@@ -19,13 +19,11 @@
   position: relative;
   overflow: hidden;
   
-  /* چیدمان دو ستونه */
   display: flex;
   align-items: center;
   gap: 4rem;
 }
 
-/* افکت نوری محو در پس‌زمینه کارت */
 .ctaBox::before {
   content: '';
   position: absolute;
@@ -38,7 +36,6 @@
   z-index: 0;
 }
 
-/* --- ستون راست (متن‌ها) --- */
 .textContent {
   flex: 1.2;
   text-align: right;
@@ -67,7 +64,7 @@
   .subtitle{
     font-size: 16px;
     line-height: 1.8;
-    color: #86868b; /* خاکستریِ خوانا و مینیمال */
+    color: #86868b;
     margin-bottom: 30px;
     font-weight: 400;
   }
@@ -100,7 +97,6 @@
   }
 }
 
-/* دکمه شبیه‌ساز: حاشیه بسیار ظریف، شیشه‌ای و شیک */
 .btnSecondary {
   background: transparent;
   color: #303030;
@@ -122,7 +118,6 @@
 }
 
 
-/* --- ستون چپ (عکس) --- */
 .imageContent {
   flex: 1;
   position: relative;
@@ -131,22 +126,19 @@
   justify-content: center;
   align-items: center;
   min-height: 400px; 
-  height: 400px; /* این خط رو اضافه کن تا اسلایدر دقیقاً 400 پیکسل بشه */
-  border-radius: 24px; /* اگر خواستی گوشه‌هاش هم نرم بشه */
- /* این رو اضافه کن تا باکس عکس ارتفاع داشته باشه و جمع نشه */
+  height: 400px;
+  border-radius: 24px;
 
   .imageBg {
-    display: none; /* چون عکس کل کادر رو پر می‌کنه، دیگه به هاله نوری پشتش نیازی نداریم */
+    display: none;
   }
 
   img {
     position: relative;
     z-index: 1;
-    /* width و max-width و filter قبلی رو پاک کن */
   }
 }
 
-/* ریسپانسیو برای تبلت و موبایل */
 @media (max-width: 992px) {
   .ctaBox {
     flex-direction: column;
@@ -164,82 +156,75 @@
     justify-content: center;
   }
   .imageContent {
-    order: -1; /* در موبایل عکس میره بالای متن */
+    order: -1;
   }
 }
 
 
-/* =========================================
-   ریسپانسیو برای تبلت و موبایل
-   ========================================= */
 @media (max-width: 992px) {
   .ctaBox {
-    flex-direction: column; /* چیدمان ستونی */
+    flex-direction: column;
     text-align: center;
-    padding: 2rem 1.2rem; /* پدینگ بهینه‌تر برای جا شدن محتوا */
-    gap: 1.5rem; /* فاصله بین عکس و متن کمتر شد */
+    padding: 2rem 1.2rem;
+    gap: 1.5rem;
   }
   
   .imageContent {
-    order: -1; /* جادوی فلکس‌باکس: عکس رو میفرسته بالای متن‌ها */
+    order: -1;
     width: 100%;
-    min-height: 260px; /* ارتفاع عکس در موبایل کمتر میشه تا کل صفحه رو نگیره */
+    min-height: 260px;
     height: 260px;
   }
 
   .textContent {
-    margin-right: 0; /* خیلی مهم: ریست کردن مارجینِ دسکتاپ */
+    margin-right: 0;
     text-align: center;
     width: 100%;
   }
 
   .title {
-    font-size: 22px; /* تیتر کمی جمع‌وجورتر */
+    font-size: 22px;
   }
 
   .subtitle {
     margin: 0 auto 1.5rem auto;
     font-size: 14px;
-    max-width: 95%; /* تا لبه‌های گوشی نچسبه */
+    max-width: 95%;
   }
 
-  /* تنظیم دکمه‌ها در موبایل */
   .actionButtons {
     display: flex;
-    flex-direction: row; /* در کنار هم قرار می‌گیرند */
+    flex-direction: row;
     gap: 10px;
     width: 100%;
     justify-content: space-between;
   }
 
-  /* استایل اختصاصی دکمه‌ها برای اینکه تو موبایل دقیقاً جا بشن */
   .btnPrimary, .btnSecondary {
-    flex: 1; /* عرض باقی‌مانده رو مساوی بین دو دکمه تقسیم می‌کنه */
-    width: auto; /* عرض ثابت ۱۹۰ پیکسل دسکتاپ رو باطل می‌کنه */
-    padding: 12px 8px; /* پدینگ کناری کمتر تا جا باز بشه */
-    font-size: 12px; /* فونت کوچکتر برای موبایل */
+    flex: 1;
+    width: auto;
+    padding: 12px 8px;
+    font-size: 12px;
     
-    /* برای اینکه آیکون و متن دکمه تو موبایل قشنگ‌تر وایسن */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6px !important; /* فاصله آیکون و متن رو تو موبایل کم میکنیم */
+    gap: 6px !important;
     
     svg {
-      width: 16px; /* آیکون‌ها رو یکم کوچیکتر می‌کنیم */
+      width: 16px;
       height: 16px;
     }
   }
 }
 
-/* برای گوشی‌های خیلی کوچیک (زیر 380 پیکسل مثل آیفون SE) که دکمه‌ها کنار هم له میشن */
 @media (max-width: 380px) {
   .actionButtons {
-    flex-direction: column; /* دکمه‌ها رو میاره زیر هم */
+    flex-direction: column;
   }
   
   .btnPrimary, .btnSecondary {
-    width: 100%; /* دکمه کل عرض رو میگیره */
+    width: 100%;
     font-size: 14px;
   }
 }

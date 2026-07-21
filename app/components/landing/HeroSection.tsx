@@ -15,16 +15,7 @@ export default function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* <motion.div 
-          className={styles.badge}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-        >
-          <span>فناوری پلیمری پیشرفته</span> کلمه کلیدی اول
-        </motion.div> */}
         
-        {/* H1 سئو شده: ترکیب شعار + هدف جستجوی کاربر */}
         <motion.h1 
           className={styles.mainTitle}
           initial={{ opacity: 0, y: 20 }}
@@ -34,7 +25,6 @@ export default function HeroSection() {
          پودر بندکشی و چسب کاشی پومر
         </motion.h1>
         
-        {/* H2 سئو شده: توضیح محصول و ارزش‌های اصلی */}
         <motion.h2 
           className={styles.description}
           initial={{ opacity: 0 }}
@@ -53,9 +43,6 @@ export default function HeroSection() {
              خرید پکیج پومر
           </Link>
           <Link href="/tutorial" className={styles.btnSecondary}>
-            {/* <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg> */}
             شبیه‌ساز آموزش اجرا
           </Link>
         </motion.div>
@@ -69,7 +56,7 @@ export default function HeroSection() {
       >
         <Image 
           src="/illustration.png" 
-          alt="پکیج ترمیم درز کاشی و خمیر بندکشی پومر" /* Alt سئو شده بسیار مهم */
+          alt="پکیج ترمیم درز کاشی و خمیر بندکشی پومر"
           width={650} 
           height={650} 
           className={styles.heroIllustration}

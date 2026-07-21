@@ -1,15 +1,10 @@
-/* =========================================
-   ساختار مشترک و ثابت (Stage 4)
-========================================= */
+
 .stageContainer {
   position: relative;
   width: 100%;
-  
-  /* حالت دسکتاپ: حداقل 680 پیکسل */
   min-height: max(calc(100vh - 80px), 680px); 
   
-  /* حالت موبایل: مچ شدن با ارتفاع دقیق گوشی */
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     min-height: calc(100dvh - 80px); 
   }
   
@@ -49,13 +44,11 @@
   top: 50%;
   left: calc(50% - 220px); 
   transform: translateY(-50%);
-  width: 48px;  /* کمی بزرگ‌تر برای تاچ راحت‌تر و ظاهر لوکس‌تر */
+  width: 48px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  /* استایل گلس‌مورفیسم مدرن */
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -63,13 +56,12 @@
   border-radius: 50%;
   color: #333;
   
-  /* سایه نرم و چندلایه برای ایجاد عمق */
   box-shadow: 
     0 8px 20px rgba(0, 0, 0, 0.06), 
     inset 0 2px 4px rgba(255, 255, 255, 0.8);
     
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* انیمیشن فوق‌العاده نرم */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 50;
 
   svg { 
@@ -83,12 +75,10 @@
     border-color: #c8a377; 
     color: #c8a377; 
     
-    /* یک درخشش ملایم با رنگ اصلی پروژه */
     box-shadow: 
       0 10px 25px rgba(200, 163, 119, 0.25), 
       inset 0 2px 4px rgba(255, 255, 255, 1);
     
-    /* دکمه کمی پاپ می‌شود و آیکون به عقب اشاره می‌کند */
     transform: translateY(-50%) scale(1.05); 
     svg { transform: translateX(-4px); }
   }
@@ -101,7 +91,7 @@
     height: 42px;
     
     &:hover {
-      transform: scale(1.05); /* توی موبایل موقع هاور شدن، translateY رو باطل می‌کنیم */
+      transform: scale(1.05);
     }
   }
 }
@@ -109,7 +99,7 @@
 
 .tileWrapper {
   position: absolute;
-  top: 52%; /* کاشی دقیقاً وسط صفحه، کمی متمایل به پایین قفل می‌شود */
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%); 
   width: 300px;
@@ -120,9 +110,6 @@
   z-index: 5;
 }
 
-/* =========================================
-   المان‌های اختصاصی (Stage 4)
-========================================= */
 .interactionArea {
   position: absolute;
   top: 0;
@@ -173,12 +160,18 @@
   filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25)); 
 }
 
-/* =========================================
-   دکمه‌های پایانی
-========================================= */
 .actionButtons {
   position: absolute;
-  top: calc(52% + 200px); /* قفل شدن زیر کاشی در دسکتاپ */
+  top: calc(52% + 200px);
+  
+  @media (max-width: 1200px) {
+    top: calc(52% + 180px);
+  }
+
+  @media (max-width: 768px) {
+    top: calc(52% + 170px);
+  }
+
   left: 0;
   width: 100%;
   padding: 0 20px; 

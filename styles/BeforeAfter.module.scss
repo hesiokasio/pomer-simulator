@@ -1,7 +1,7 @@
 /* styles/BeforeAfter.module.scss */
 
 .sliderContainer {
-  position: absolute; /* برای اینکه کل فضای باکس پدر رو پر کنه */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -20,7 +20,6 @@
   pointer-events: none;
 }
 
-/* خط سفید جداکننده */
 .sliderLine {
   position: absolute;
   top: 0;
@@ -33,7 +32,6 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
-/* دستگیره (هندل) وسط خط */
 .sliderHandle {
   position: absolute;
   top: 50%;
@@ -56,7 +54,6 @@
   }
 }
 
-/* اینپوت نامرئی برای کشیدن با موس یا دست */
 .rangeInput {
   position: absolute;
   top: 0;

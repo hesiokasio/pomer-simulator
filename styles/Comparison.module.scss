@@ -3,13 +3,13 @@
 
 .comparisonSection {
   padding: 8rem $padding-x;
-  background-color: #fbfbfd; /* هم‌رنگ با پس‌زمینه هیرو برای یکپارچگی */
+  background-color: #fbfbfd;
   position: relative;
 }
 
 .container {
   width: 100%;
-  max-width: $max-width-layout;  /* عرض رو کمی جمع‌تر کردیم تا متن‌ها کش نیان */
+  max-width: $max-width-layout;
   margin: 0 auto;
 }
 
@@ -41,13 +41,12 @@
 
 .card {
   flex: 1;
-  border-radius: 32px; /* گوشه‌های بسیار گرد و مدرن */
+  border-radius: 32px;
   padding: 3.5rem 2.5rem;
   position: relative;
   transition: transform 0.3s ease;
 }
 
-/* کارت روش سنتی (پس‌زمینه خاکستری مات اپل، بدون سایه و کادر) */
 .cardTraditional {
   background: #f5f5f7; 
   border: none;
@@ -65,14 +64,12 @@
   }
 }
 
-/* کارت پومر (سفید مطلق، سایه بسیار نرم، برجسته) */
 .cardPomer {
   background: #ffffff;
   border: none;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04); /* سایه لوکس و نامرئی */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
   z-index: 2;
 
-  /* نشانِ داخلی و ظریف */
   .badge {
     display: inline-block;
     background: rgba(200, 163, 119, 0.1);
@@ -106,7 +103,6 @@
   font-size: 1.05rem;
   line-height: 1.6;
 
-  /* پس‌زمینه دایره‌ای ظریف برای آیکون‌ها */
   .iconBox {
     width: 32px;
     height: 32px;
@@ -126,15 +122,14 @@
 
 .iconBoxRed {
   background: rgba(255, 59, 48, 0.1);
-  color: #ff3b30; /* قرمز کلاسیک */
+  color: #ff3b30;
 }
 
 .iconBoxGold {
   background: rgba(200, 163, 119, 0.15);
-  color: $primary-color; /* رنگ c8a377 */
+  color: $primary-color;
 }
 
-/* ریسپانسیو */
 @media (max-width: 992px) {
   .cardsWrapper {
     flex-direction: column;

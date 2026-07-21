@@ -11,7 +11,6 @@
   margin: 0 auto;
 }
 
-/* بخش هدر و داستان */
 .storySection {
   text-align: right;
   margin-bottom: 6rem;
@@ -32,7 +31,7 @@
     margin-bottom: 1.5rem;
     font-weight: 400;
     text-align: justify;
-    text-align-last: right; /* خط آخر در مرکز قرار می‌گیره */
+    text-align-last: right;
   }
 }
 
@@ -52,7 +51,7 @@
     margin-bottom: 1.5rem;
     font-weight: 400;
     text-align: justify;
-    text-align-last: right; /* خط آخر در مرکز قرار می‌گیره */
+    text-align-last: right;
 }
 
 .ctitle{
@@ -65,7 +64,6 @@
     text-align-last: center; 
 }
 
-/* بخش فرمولاسیون (کارت‌ها) */
 .formulaSection {
   margin-top: 8rem;
 
@@ -141,7 +139,6 @@
   border-radius: 30px;
 }
 
-/* ریسپانسیو */
 @media (max-width: 992px) {
   .grid {
     grid-template-columns: 1fr;

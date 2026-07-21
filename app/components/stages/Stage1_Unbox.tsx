@@ -3,12 +3,10 @@
 
 import { useState } from 'react';
 import { motion, PanInfo, useAnimation } from 'framer-motion';
-// اینجا POWDER_THEMES رو کنار useSimulatorStore ایمپورت می‌کنیم:
 import { useSimulatorStore, POWDER_THEMES } from '@/store/useSimulatorStore';
 import styles from '@/styles/Stage1.module.scss';
 
 export default function Stage1_Unbox() {
-  // به جای useState، حالا activeTheme و setActiveTheme رو از استور گلوبال می‌گیریم
   const { nextStage, activeTheme, setActiveTheme } = useSimulatorStore();
   
   const controls = useAnimation();
@@ -98,7 +96,6 @@ export default function Stage1_Unbox() {
         </div>
       </div>
 
-      {/* نوار رنگ شناور مخصوص موبایل */}
       <div className={styles.mobileColorBar}>
         {POWDER_THEMES.map((theme) => (
           <button
@@ -108,7 +105,6 @@ export default function Stage1_Unbox() {
             title={theme.name}
             aria-label={`تغییر رنگ به ${theme.name}`}
           >
-            {/* دایره رنگی داخل دکمه */}
             <span 
               className={styles.colorDot} 
               style={{ backgroundColor: theme.hex }}

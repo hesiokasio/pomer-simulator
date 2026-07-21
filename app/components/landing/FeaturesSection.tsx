@@ -59,7 +59,6 @@ export default function FeaturesSection() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
         >
-          {/* <span className={styles.subtitle}>تفاوت در جزئیات است</span> */}
           <h2 className={styles.title}>چرا پومر انتخابی هوشمند برای نصب و ترمیم درز کاشی و سرامیک است؟</h2>
           <p>پومر با فرمولاسیون پلیمری، اجرای آسان، دوام بالا و مقاومت در برابر رطوبت، انتخابی مطمئن برای نصب و ترمیم کاشی و سرامیک می‌باشد.</p>
         </motion.div>

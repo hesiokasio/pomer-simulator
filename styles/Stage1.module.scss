@@ -1,16 +1,11 @@
-/* =========================================
-   ساختار مشترک و ثابت (Stage 1)
-========================================= */
+
 .stageContainer {
   position: relative;
   width: 100%;
-  
-  /* حالت دسکتاپ: حداقل 680 پیکسل */
   min-height: max(calc(100vh - 80px), 680px); 
-  
-  /* حالت موبایل: مچ شدن با ارتفاع دقیق گوشی */
-  @media (max-width: 768px) {
-    min-height: calc(100dvh - 80px); /* dvh نوار آدرس مرورگر موبایل رو هم حساب میکنه */
+
+  @media (max-width: 1200px) {
+    min-height: calc(100dvh - 80px);
   }
   
   overflow-x: hidden;
@@ -47,7 +42,7 @@
 }
 
 .backButton {
-  display: none; /* در استیج اول دکمه بک نداریم */
+  display: none;
 }
 
 .bucketWrapper {
@@ -63,9 +58,6 @@
   z-index: 5;
 }
 
-/* =========================================
-   المان‌های اختصاصی (Stage 1)
-========================================= */
 .bucket {
   width: 220px;
   height: 200px;
@@ -136,7 +128,10 @@
   position: absolute;
   bottom: 60px; 
   
-  /* توی موبایل یکم فاصله‌ش رو از پایین کمتر می‌کنیم که امن‌تر باشه */
+  @media (max-width: 1200px) {
+    bottom: 30px; 
+  }
+  
   @media (max-width: 768px) {
     bottom: 20px; 
   }

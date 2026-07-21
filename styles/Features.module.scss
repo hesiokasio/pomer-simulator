@@ -49,7 +49,7 @@
   p{
     font-size: 16px;
     line-height: 1.8;
-    color: #86868b; /* خاکستریِ خوانا و مینیمال */
+    color: #86868b;
     margin-bottom: 30px;
     font-weight: 400;
   }
@@ -70,7 +70,6 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(0, 0, 0, 0.03);
 
-  /* افکت هاور لوکس */
   &:hover {
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.04);
     transform: translateY(-5px);
@@ -83,7 +82,6 @@
   }
 }
 
-/* استایل‌دهی نامتقارن برای شکستن ساختار قدیمی */
 .featureCard:nth-child(1) { grid-column: span 8; }
 .featureCard:nth-child(2) { grid-column: span 4; }
 .featureCard:nth-child(3) { grid-column: span 4; }
@@ -95,7 +93,7 @@
   left: 2rem;
   font-size: 5rem;
   font-weight: 900;
-  color: rgba(200, 163, 119, 0.08); /* عدد بزرگ و محو در پس‌زمینه */
+  color: rgba(200, 163, 119, 0.08);
   line-height: 1;
   pointer-events: none;
 }
@@ -132,10 +130,9 @@
   font-weight: 300;
 }
 
-/* ریسپانسیو برای موبایل و تبلت */
 @media (max-width: 992px) {
   .featureCard:nth-child(n) {
-    grid-column: span 12; /* در موبایل همه زیر هم قرار می‌گیرن */
+    grid-column: span 12;
   }
   
   .header .title {
@@ -145,26 +142,23 @@
 
 
 
-/* ریسپانسیو برای موبایل و تبلت */
 @media (max-width: 992px) {
   
   .header .title {
-    font-size: 20px; /* سایز تیتر کاملاً استاندارد و هماهنگ با بقیه سکشن‌ها */
+    font-size: 20px;
   }
 
   .grid {
-    gap: 1rem; /* فاصله بین کارت‌ها تو موبایل کمی کمتر میشه تا جا بازتر بشه */
+    gap: 1rem;
   }
 
-  /* تبدیل به دو ستونه (هر کارت 6 ستون از 12 ستون رو میگیره) */
   .featureCard:nth-child(n) {
     grid-column: span 6; 
   }
   
-  /* --- تنظیم سایز اجزای داخل کارت‌ها برای حالت دو ستونه موبایل --- */
   
   .cardNumber {
-    font-size: 3rem; /* عدد سایه محو کوچکتر میشه */
+    font-size: 3rem;
     top: 1rem;
     left: 1rem;
   }
@@ -182,19 +176,18 @@
   }
 
   .cardTitle {
-    font-size: 15px; /* تیتر ویژگی‌ها کوچکتر میشه تا تو دو ستون جا بشه */
+    font-size: 15px;
     margin-bottom: 0.5rem;
   }
 
   .cardDesc {
-    font-size: 12px; /* متن توضیحات جمع‌وجورتر */
+    font-size: 12px;
     line-height: 1.6;
   }
 }
 
-/* برای گوشی‌های خیلی خیلی کوچیک (زیر 400 پیکسل) که دو ستونه بودن باعث ناخوانایی میشه */
 @media (max-width: 425px) {
   .featureCard:nth-child(n) {
-    grid-column: span 12; /* تو گوشی‌های خیلی کوچیک مثل آیفون SE میشه یک ستونه */
+    grid-column: span 12;
   }
 }

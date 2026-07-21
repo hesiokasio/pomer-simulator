@@ -12,7 +12,6 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
   const [isPouring, setIsPouring] = useState(false);
   const [streamVisible, setStreamVisible] = useState(false);
   
-  // استیت جدید: کنترل ارتفاع آبِ داخل قوطی
   const [waterLevel, setWaterLevel] = useState(() => {
     if (waterScoops === 1) return '7%';
     if (waterScoops === 2) return '14%';
@@ -59,13 +58,11 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
     setIsPouring(true);
     cupControls.stop();
 
-    // ۱. چرخش لیوان
     cupControls.start({ 
       rotate: -100, x: 0, y: 0, 
       transition: { duration: 0.5, ease: "easeInOut" } 
     });
 
-    // ۲. خالی شدن آبِ لیوان
     setTimeout(() => {
       waterLevelControls.start({ 
         x: -21, y: -50, scaleX: 0.4, scaleY: 0.7,
@@ -75,24 +72,21 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
       setStreamVisible(true);
     }, 150);
 
-    // ۳. بالا آمدن آب داخل قوطی (با مقادیر جدید)
     setTimeout(() => {
       const nextScoop = waterScoops + 1;
-      if (nextScoop === 1) setWaterLevel('7%');       // پیمانه اول
-      else if (nextScoop === 2) setWaterLevel('14%'); // پیمانه دوم
-      else if (nextScoop >= 3) setWaterLevel('20%');  // پیمانه سوم: دقیقاً یک‌پنجم کل قوطی
+      if (nextScoop === 1) setWaterLevel('7%');
+      else if (nextScoop === 2) setWaterLevel('14%');
+      else if (nextScoop >= 3) setWaterLevel('20%');
     }, 450); 
 
     await new Promise(resolve => setTimeout(resolve, 1100));
     setStreamVisible(false); 
 
-    // ۴. بازگشت لیوان
     await cupControls.start({ 
       rotate: 0, x: 0, y: 0, 
       transition: { type: "spring", stiffness: 100, damping: 15 } 
     });
 
-    // ۵. پر شدن مجدد لیوان
     if (waterScoops < 2) {
       waterLevelControls.set({ 
         height: '0%', y: 0, x: 0, scaleX: 1, scaleY: 1,
@@ -111,21 +105,31 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
     <div className={styles.stageContainer}>
 
       <button 
-  className={styles.backButton} 
-  onClick={prevStage} 
-  aria-label="مرحله قبل"
->
-  {/* آیکون فلش ظریف به سمت چپ */}
-  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
-  </svg>
-</button>
+       className={styles.backButton} 
+       onClick={prevStage} 
+         aria-label="مرحله قبل"
+      >
+         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+         </svg>
+       </button>
+
+       <button 
+        className={styles.nextButton} 
+        onClick={nextStage} 
+        aria-label="مرحله بعد"
+      >
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
 
 
       <div className={styles.textWrap}>
         <h2 className={styles.title}>اضافه کردن آب</h2>
         <p className={styles.subtitle}>
-          برای اضافه کردن آب، ۳ بار روی پیمانه ضربه بزنید (پیمانه فعلی: {waterScoops}/3)
+          به ۳ پیمانه آب نیاز داریم. ۳ بار روی لیوان ضربه بزن تا آب اضافه شود.
+          (پیمانه فعلی: {waterScoops}/3)
         </p>
       </div>
       
@@ -138,7 +142,11 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
           whileTap={!isPouring && waterScoops < 3 ? { scale: 0.95 } : {}}
           disabled={waterScoops >= 3 || isPouring}
         >
-          <motion.div className={styles.waterInside} animate={waterLevelControls}>
+          <motion.div 
+             className={styles.waterInside} 
+             initial={{ height: '85%', borderRadius: '0 0 14px 14px', originX: 0.5, originY: 1 }}
+             animate={waterLevelControls}
+            >
             <div className={styles.bubbles}>
               <span style={{ left: '20%', width: '5px', height: '5px', animationDelay: '0s' }}></span>
               <span style={{ left: '50%', width: '3px', height: '3px', animationDelay: '0.4s' }}></span>
@@ -174,7 +182,6 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
       
       <div className={styles.bucketWrapper}>
         <div className={styles.bucket}>
-          {/* لایه زیرین: پودر */}
           <svg className={styles.powderSvg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150' preserveAspectRatio='none'>
             <defs>
               <clipPath id='hillClip'>
@@ -206,7 +213,6 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
             </g>
           </svg>
 
-          {/* لایه رویی: آب در حال بالا آمدن */}
           <motion.div
             className={styles.risingWaterInBucket}
             initial={{ height: '0%' }}

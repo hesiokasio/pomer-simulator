@@ -1,18 +1,16 @@
-/* =========================================
-   ساختار مشترک و ثابت (Stage 3)
-========================================= */
+
 .stageContainer {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 640px; /* فضای کافی برای جلوگیری از تو هم رفتن در موبایل */
+  min-height: 640px;
   overflow: hidden;
   background-color: transparent;
 }
 
 .textWrap {
   position: absolute;
-  top: 50px; /* فاصله ثابت و امن از بالای کادر */
+  top: 50px;
   left: 0;
   width: 100%;
   text-align: center;
@@ -36,32 +34,27 @@
   @media (max-width: 768px) { font-size: 0.95rem; }
 }
 
-.backButton {
+.backButton, .nextButton {
   position: absolute;
   top: 50%;
-  left: calc(50% - 220px); 
   transform: translateY(-50%);
-  width: 48px;  /* کمی بزرگ‌تر برای تاچ راحت‌تر و ظاهر لوکس‌تر */
+  width: 48px;
   height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  /* استایل گلس‌مورفیسم مدرن */
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 50%;
   color: #333;
-  
-  /* سایه نرم و چندلایه برای ایجاد عمق */
   box-shadow: 
     0 8px 20px rgba(0, 0, 0, 0.06), 
     inset 0 2px 4px rgba(255, 255, 255, 0.8);
     
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* انیمیشن فوق‌العاده نرم */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 50;
 
   svg { 
@@ -75,35 +68,54 @@
     border-color: #c8a377; 
     color: #c8a377; 
     
-    /* یک درخشش ملایم با رنگ اصلی پروژه */
     box-shadow: 
       0 10px 25px rgba(200, 163, 119, 0.25), 
       inset 0 2px 4px rgba(255, 255, 255, 1);
     
-    /* دکمه کمی پاپ می‌شود و آیکون به عقب اشاره می‌کند */
     transform: translateY(-50%) scale(1.05); 
-    svg { transform: translateX(-4px); }
   }
 
   @media (max-width: 768px) {
     top: 20px;
-    left: 20px;
     transform: none; 
     width: 42px;
     height: 42px;
     
     &:hover {
-      transform: scale(1.05); /* توی موبایل موقع هاور شدن، translateY رو باطل می‌کنیم */
+      transform: scale(1.05);
     }
   }
 }
 
+.backButton {
+  left: calc(50% - 220px); 
+  
+  &:hover svg { 
+    transform: translateX(-4px); 
+  }
+  
+  @media (max-width: 768px) { 
+    left: 20px; 
+  }
+}
+
+.nextButton {
+  right: calc(50% - 220px); 
+  
+  &:hover svg { 
+    transform: translateX(4px); 
+  }
+  
+  @media (max-width: 768px) { 
+    right: 20px; 
+  }
+}
 
 .bucketWrapper {
   position: absolute;
   top: 55%;
   left: 50%;
-  transform: translate(-50%, -50%); /* میخکوب شدن قوطی در مرکز دقیق صفحه */
+  transform: translate(-50%, -50%);
   width: 260px;
   height: 260px;
   display: flex;
@@ -112,12 +124,10 @@
   z-index: 5;
 }
 
-/* =========================================
-   المان‌های اختصاصی (Stage 3)
-========================================= */
+
 .timerBadge {
   position: absolute;
-  bottom: calc(50% + 140px); /* همیشه دقیقا بالای قوطی و دور از متن */
+  bottom: calc(50% + 140px);
   left: 50%;
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.85);
@@ -140,7 +150,7 @@
 
 .progressContainer {
   position: absolute;
-  top: calc(55% + 160px); /* <--- این خط تغییر کرد تا نوار کاملاً بیاد زیر قوطی */
+  top: calc(55% + 160px);
   left: 50%;
   transform: translateX(-50%);
   width: 220px;
@@ -154,7 +164,7 @@
 
 .progressBar {
   height: 100%;
-  background-color: #808080; /* <--- رنگ از مشکی به قهوه‌ای سازمانی تغییر کرد */
+  background-color: #808080;
   transition: width 0.1s linear;
   border-radius: 4px;
 }

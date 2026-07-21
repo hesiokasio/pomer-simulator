@@ -5,11 +5,10 @@ import Footer from '@/app/components/layout/Footer';
 
 import { Vazirmatn } from 'next/font/google';
 
-// ۲. تنظیمات فونت (پشتیبانی از عربی/فارسی و لاتین)
 const vazirmatn = Vazirmatn({
   subsets: ['arabic', 'latin'],
   display: 'swap',
-  weight: ['300', '400', '500', '700', '800'], // وزن‌هایی که نیاز داریم
+  weight: ['300', '400', '500', '700', '800'],
 });
 
 export const metadata = {
@@ -23,7 +22,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    // ۳. اضافه کردن کلاس فونت به تگ html
     <html lang="fa" dir="rtl" className={vazirmatn.className}>
       <body>
         <Header />

@@ -3,12 +3,12 @@
 
 .calculatorSection {
   padding: 6rem 0; 
-  background-color: transparent; /* حذف پس‌زمینه اضافی برای مینیمال‌تر شدن */
+  background-color: transparent;
 }
 
 .container {
   width: 100%;
-  max-width: $max-width-layout; /* تنظیم دقیق روی ۱۲۰۰ پیکسل */
+  max-width: $max-width-layout;
   margin: 0 auto;
 }
 
@@ -26,7 +26,6 @@
   gap: 5rem;
 }
 
-/* --- ستون راست: متن و تب‌ها --- */
 .infoSide {
   flex: 1;
   text-align: right;
@@ -44,20 +43,19 @@
   p {
     font-size: 16px;
     line-height: 1.8;
-    color: #86868b; /* خاکستریِ خوانا و مینیمال */
+    color: #86868b;
     margin-bottom: 30px;
     font-weight: 400;
   }
 }
 
-/* --- تب‌های کپسولی (شبیه iOS) --- */
 .tabs {
   display: flex;
   width: 100%;
   max-width: 320px;
   background: #f5f5f7;
   border-radius: 30px;
-  padding: 0.4rem; /* این پدینگ باعث می‌شه دکمه‌ها از لبه‌های کادر طوسی فاصله بگیرن */
+  padding: 0.4rem;
   position: relative;
 }
 
@@ -72,7 +70,7 @@
   border-radius: 25px;
   cursor: pointer;
   transition: color 0.3s ease;
-  position: relative; /* اضافه شد تا بک‌گراند متحرک دقیقاً داخل دکمه بیفتد */
+  position: relative;
   font-family: inherit;
   display: flex;
   align-items: center;
@@ -84,13 +82,12 @@
 
   .tabText {
     position: relative;
-    z-index: 2; /* متن همیشه روی بک‌گراند می‌مونه */
+    z-index: 2;
   }
 }
 
 .activeTabBackground {
   position: absolute;
-  /* صفر بودن این مقادیر یعنی بک‌گراند دقیقاً هم‌سایز خود دکمه (پودر یا چسب) می‌شه */
   top: 0;
   left: 0;
   right: 0;
@@ -98,10 +95,9 @@
   background: #ffffff;
   border-radius: 25px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  z-index: 1; /* زیر متن قرار می‌گیره */
+  z-index: 1;
 }
 
-/* --- ستون چپ: عملیات ماشین‌حساب --- */
 .actionSide {
   flex: 1;
   display: flex;
@@ -177,7 +173,6 @@
   text-align: center;
 }
 
-/* ریسپانسیو برای تبلت و موبایل */
 @media (max-width: 992px) {
   .calculatorCard {
     flex-direction: column;

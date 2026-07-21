@@ -49,7 +49,6 @@ export default function ComparisonSection() {
 
         <div className={styles.cardsWrapper}>
           
-          {/* کارت پومر (آوردیمش سمت راست چون سایت RTL هست) */}
           <motion.div 
             className={`${styles.card} ${styles.cardPomer}`}
             initial={{ opacity: 0, y: 40 }}
@@ -71,7 +70,6 @@ export default function ComparisonSection() {
             </div>
           </motion.div>
 
-          {/* کارت روش سنتی */}
           <motion.div 
             className={`${styles.card} ${styles.cardTraditional}`}
             initial={{ opacity: 0, y: 40 }}

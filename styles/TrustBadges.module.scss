@@ -24,17 +24,16 @@
   gap: 1rem;
   flex: 1;
   min-width: 150px;
-  color: #86868b; /* خاکستری استاندارد مینیمال */
+  color: #86868b;
   transition: all 0.4s ease;
   cursor: default;
 
-  /* افکت هاور: آیکون و متن تیره می‌شن و یه پرش خیلی نرم دارن */
   &:hover {
     color: #1d1d1f;
     transform: translateY(-5px);
     
     svg {
-      color: $primary-color; /* آیکون طلایی میشه */
+      color: $primary-color;
     }
   }
 }
@@ -64,30 +63,22 @@
   margin: 0;
 }
 
-/* ریسپانسیو */
 @media (max-width: 768px) {
   .container {
     justify-content: center;
   }
   .badgeItem {
-    min-width: 40%; /* در موبایل دوتا دوتا کنار هم قرار می‌گیرن */
+    min-width: 40%;
   }
 }
 
-
-/* ریسپانسیو - حالت موبایل (اسکرول افقی با چینش از بالا) */
 @media (max-width: 768px) {
   .container {
     flex-wrap: nowrap; 
     overflow-x: auto; 
     justify-content: flex-start;
-    
-    /* === این خط آیتم‌ها را به جای وسط، به بالای کادر می‌چسباند === */
     align-items: flex-start; 
-    
     padding-bottom: 1rem; 
-    
-    /* مخفی کردن اسکرول‌بار مرورگر */
     -ms-overflow-style: none; 
     scrollbar-width: none;  
     &::-webkit-scrollbar {
@@ -98,8 +89,6 @@
   .badgeItem {
     min-width: 130px; 
     flex-shrink: 0; 
-    
-    /* === این خط باعث میشه محتوای داخل خود کارت هم از بالا شروع بشه === */
     justify-content: flex-start; 
   }
 }

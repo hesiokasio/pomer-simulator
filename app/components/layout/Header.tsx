@@ -8,14 +8,12 @@ import Image from 'next/image';
 
 export default function Header() {
   const pathname = usePathname();
-  // فقط برای کنترل منوی موبایل
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
         
-        {/* دکمه همبرگری - در دسکتاپ مخفی است */}
         <button 
           className={`${styles.hamburgerBtn} ${isMobileMenuOpen ? styles.open : ''}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -25,7 +23,6 @@ export default function Header() {
           <span></span>
         </button>
 
-        {/* منوی لینک‌ها - در دسکتاپ عادی، در موبایل کشویی */}
         <nav className={`${styles.nav} ${isMobileMenuOpen ? styles.navActive : ''}`}>
          <Link href="/" className={pathname === '/' ? styles.active : ''} onClick={() => setIsMobileMenuOpen(false)}>خانه</Link>
          <Link href="/tutorial" className={pathname === '/tutorial' ? styles.active : ''} onClick={() => setIsMobileMenuOpen(false)}>آموزش اجرا</Link>

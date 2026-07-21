@@ -86,7 +86,7 @@
 }
 
 .hamburgerBtn {
-  display: none; /* در دسکتاپ هییییییچ تاثیری نداره و مخفیه */
+  display: none;
   flex-direction: column;
   justify-content: space-around;
   width: 30px;
@@ -95,19 +95,18 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 102; /* تا همیشه روی منوی باز شده قرار بگیره */
+  z-index: 102;
 
   span {
     width: 30px;
     height: 3px;
-    background: $text-dark; /* رنگ ۳ خط همبرگر */
+    background: $text-dark;
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
   }
 
-  /* انیمیشن تبدیل همبرگر به X */
   &.open span:nth-child(1) {
     transform: rotate(45deg);
   }
@@ -119,36 +118,32 @@
   }
 }
 
-/* حالت موبایل و تبلت */
 @media (max-width: 992px) {
 
   .hamburgerBtn {
-    display: flex; /* فقط تو موبایل دکمه همبرگر رو نشون بده */
+    display: flex;
   }
 
-  /* تنظیمات منو فقط برای وقتی که صفحه کوچیک میشه */
   .nav {
     position: fixed;
     top: 0;
-    right: -100%; /* در حالت عادی بیرون از صفحه است (مخفی) */
-    width: 250px; /* عرض سایدبار منو */
+    right: -100%;
+    width: 250px;
     height: 100vh;
-    background: #ffffff; /* رنگ پس‌زمینه منو تو موبایل */
-    flex-direction: column; /* لینک ها رو زیر هم میندازه */
+    background: #ffffff;
+    flex-direction: column; 
     justify-content: center;
     align-items: center;
     gap: 2.5rem;
-    transition: right 0.3s ease-in-out; /* انیمیشن باز شدن */
+    transition: right 0.3s ease-in-out;
     box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
     z-index: 101; 
 
-    /* وقتی روی دکمه کلیک بشه، این کلاس میاد و منو وارد کادر میشه */
     &.navActive {
       right: 0; 
     }
   }
 
-  /* تو حالت موبایل لوگو روی منو نیفته */
   .logo {
     z-index: 100;
   }

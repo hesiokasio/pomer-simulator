@@ -38,7 +38,6 @@ export default function SpecsSection() {
         </motion.div>
 
         <div className={styles.content}>
-          {/* ستون راست: لیست مشخصات */}
           <motion.div 
             className={styles.specsList}
             initial={{ opacity: 0, x: 50 }}
@@ -54,7 +53,6 @@ export default function SpecsSection() {
             ))}
           </motion.div>
 
-          {/* ستون چپ: پالت رنگ‌ها */}
           <motion.div 
             className={styles.colorsBox}
             initial={{ opacity: 0, x: -50 }}
