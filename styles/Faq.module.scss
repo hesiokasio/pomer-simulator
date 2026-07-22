@@ -1,0 +1,153 @@
+// styles/Faq.module.scss
+@import './variables';
+
+.faqSection {
+  padding: 4rem 0;
+  background-color: #ffffff;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.header {
+
+  .subtitle {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #c8a377;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+  }
+
+  .title {
+    font-size: 24px;
+    color: $text-dark;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+   p{
+    font-size: 16px;
+    line-height: 1.8;
+    color: #86868b;
+    margin-bottom: 30px;
+    font-weight: 400;
+  }
+}
+
+.faqCard {
+  padding: 2rem 2.5rem;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+}
+
+.faqItem {
+  border-bottom: 1px solid #eaeaea;
+  padding: 1.5rem 0;
+  transition: border-color 0.3s ease;
+
+  &.active {
+    border-color: #c8a377;
+
+    .faqQuestion h3 {
+      color: #c8a377;
+    }
+
+    .faqQuestion .icon {
+      color: #c8a377;
+    }
+  }
+
+  &:last-child {
+    border-bottom: none;
+    &.active {
+      border-bottom: 1px solid #c8a377;
+    }
+  }
+}
+
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: right;
+  font-family: inherit;
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #222222;
+    margin: 0;
+    line-height: 1.5;
+    padding-left: 1.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #888888;
+    transition: color 0.3s ease;
+  }
+}
+
+.faqAnswer {
+  overflow: hidden;
+  
+  p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #555555;
+    margin: 0;
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    text-align: justify;
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .header {
+    
+    .title {
+      font-size: 1.75rem;
+    }
+  }
+
+  .faqQuestion h3 {
+    font-size: 1rem;
+  }
+  
+  .faqAnswer p {
+    font-size: 0.9rem;
+  }
+
+  .faqCard {
+  padding: 24px;
+}
+
+.container {
+  padding: 0;
+}
+}

@@ -5,20 +5,21 @@ import { motion } from 'framer-motion';
 import styles from '@/styles/Specs.module.scss';
 
 const specsData = [
-  { label: "محتویات پکیج", value: "پودر پلیمری + مکمل مایع" },
-  { label: "وزن خالص", value: "۴۰۰ گرم" },
-  { label: "میزان پوشش‌دهی", value: "۵ تا ۸ متر مربع" },
-  { label: "زمان خشک شدن اولیه", value: "۲ ساعت" },
-  { label: "مقاومت در برابر آب", value: "۱۰۰٪ (واترپروف)" },
+  { label: "محتویات محصول", value: "پودر پلیمری (آماده‌سازی فقط با آب)" },
+  { label: "بسته‌بندی‌ها", value: "۵۰۰ گرم (بندکشی) | ۵ و ۲۰ کیلو (چسب)" },
+  { label: "ویژگی ساختاری", value: "آنتی‌باکتریال و ضد قارچ" },
+  { label: "زمان خشک شدن اولیه", value: "۲ الی ۳ ساعت" },
+  { label: "مقاومت رطوبتی", value: "عایق ۱۰۰٪ (واترپروف)" },
 ];
 
 const colors = [
-  { name: "سفید", hex: "#ffffff" },
-  { name: "بژ", hex: "#e8d8c8" },
-  { name: "آبی ملایم", hex: "#d0e0e3" },
-  { name: "سبز ملایم", hex: "#d9ead3" },
-  { name: "طوسی", hex: "#999999" },
-  { name: "مشکی", hex: "#333333" },
+  { name: "سفید", hex: "#F8F9FA" },
+  { name: "بژ", hex: "#c8a377" },
+  { name: "طوسی روشن", hex: "#D9D9D9" },
+  { name: "طوسی تیره", hex: "#595959" },
+  { name: "قهوه‌ای", hex: "#8B5A2B" },
+  { name: "آبی", hex: "#6CA6CD" },
+  { name: "سبز", hex: "#71C671" },
 ];
 
 export default function SpecsSection() {
@@ -33,8 +34,8 @@ export default function SpecsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className={styles.subtitle}>دقیق و مهندسی‌شده</span>
-          <h2 className={styles.title}>مشخصات فنی پرومر</h2>
+          <span className={styles.subtitle}>جزئیات فنی پودر بندکشی و چسب کاشی</span>
+          <h2 className={styles.title}>استاندارد جدید در ترمیم و عایق‌بندی</h2>
         </motion.div>
 
         <div className={styles.content}>
@@ -60,7 +61,7 @@ export default function SpecsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <h3>تنوع رنگی متناسب با دکوراسیون شما</h3>
+            <h3>تنوع رنگی پودر بندکشی متناسب با دکوراسیون شما</h3>
             <div className={styles.colorGrid}>
               {colors.map((color, index) => (
                 <div 

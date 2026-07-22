@@ -43,8 +43,8 @@ export default function CalculatorSection() {
           
           <div className={styles.infoSide}>
             <div className={styles.header}>
-              <h2>محاسبه‌گر هوشمند مصرف</h2>
-              <p>متراژ پروژه خود را وارد کنید تا مقدار دقیق مواد مورد نیاز شما را محاسبه کنیم.</p>
+              <h2>محاسبه آنلاین مقدار چسب کاشی و پودر بندکشی</h2>
+              <p>متراژ دقیق فضای خود را وارد کنید تا میزان پودر پلیمری مورد نیاز برای یک اجرای راحت و بدون پرتی را به شما پیشنهاد دهیم.</p>
             </div>
 
             <div className={styles.tabs} dir="rtl">

@@ -8,6 +8,7 @@ import SpecsSection from '@/app/components/landing/SpecsSection';
 import ProductsSection from './components/landing/ProductsSection';
 import CtaSection from '@/app/components/landing/CtaSection';
 import CalculatorSection from '@/app/components/landing/CalculatorSection';
+import FaqSection from '@/app/components/landing/FaqSection';
 
 export default function LandingPage() {
   return (
@@ -20,6 +21,7 @@ export default function LandingPage() {
       <ProductsSection />
       <CalculatorSection />
       <CtaSection />
+      <FaqSection />
       
       {/* <FeaturesSection /> */}
       {/* <SpecsSection /> */}

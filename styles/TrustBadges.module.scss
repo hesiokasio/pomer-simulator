@@ -58,9 +58,14 @@
 }
 
 .badgeTitle {
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 600;
-  margin: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: center;
+  line-height: 1.6;
+  max-width: 140px;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {

@@ -22,7 +22,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-         پودر بندکشی و چسب کاشی پرومر
+          پودر بندکشی نانو و چسب کاشی پرومر
         </motion.h1>
         
         <motion.h2 
@@ -31,8 +31,9 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          راهکاری حرفه‌ای برای نصب، بندکشی و ترمیم کاشی و سرامیک
-          </motion.h2>
+          نسل جدید چسب کاشی و پودر بندکشی ضد آب، ترمیمی بی‌نقص و لوکس با اجرای آسان در خانه بدون نیاز به نصاب و تخصص
+           </motion.h2>
+
         <motion.div 
           className={styles.actionButtons}
           initial={{ opacity: 0, y: 20 }}
@@ -40,10 +41,10 @@ export default function HeroSection() {
           transition={{ delay: 0.8, duration: 0.5 }}
         >
           <Link href="/#cta" className={styles.btnPrimary}>
-             خرید پکیج پرومر
+             تهیه پکیج پرومر
           </Link>
           <Link href="/tutorial" className={styles.btnSecondary}>
-            شبیه‌ساز آموزش اجرا
+             شبیه‌ساز آموزش اجرا
           </Link>
         </motion.div>
       </motion.div>
@@ -56,7 +57,7 @@ export default function HeroSection() {
       >
         <Image 
           src="/illustration.png" 
-          alt="پکیج ترمیم درز کاشی و خمیر بندکشی پرومر"
+          alt="پودر بندکشی نانو و ضد آب پرومر - اجرای آسان"
           width={650} 
           height={650} 
           className={styles.heroIllustration}
