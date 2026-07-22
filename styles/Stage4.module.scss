@@ -3,15 +3,15 @@
   position: relative;
   width: 100%;
   min-height: max(calc(100vh - 80px), 680px); 
-  
+
   @media (max-width: 1200px) {
-    min-height: calc(100dvh - 80px); 
+    min-height: calc(100dvh - 80px);
   }
   
-  overflow-x: hidden;
-  overflow-y: auto; 
+  overflow: hidden; 
   background-color: transparent;
 }
+
 
 .textWrap {
   position: absolute;
@@ -21,6 +21,7 @@
   text-align: center;
   padding: 0 20px;
   z-index: 10;
+  margin-top: -30px;
 }
 
 .title {
@@ -84,7 +85,7 @@
   }
 
   @media (max-width: 768px) {
-    top: 20px;
+    top: 10px;
     left: 20px;
     transform: none; 
     width: 42px;

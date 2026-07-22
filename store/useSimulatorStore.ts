@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export const POWDER_THEMES = [
-  { id: 'lightGray', hex: '#cccccc', name: 'طوسی', colors: { light: '#f4f4f4', shadow: '#e8e8e8', dot: '#cccccc', highlight: '#ffffff' } },
+  { id: 'lightGray', hex: '#cccccc', name: 'طوسی', colors: { light: '#d5d5d5', shadow: '#bdbdbd', dot: '#cccccc', highlight: '#f9f9f9' } },
   { id: 'darkGray', hex: '#666666', name: 'طوسی تیره', colors: { light: '#8c8c8c', shadow: '#737373', dot: '#595959', highlight: '#a6a6a6' } },
   { id: 'green', hex: '#a8cba8', name: 'سبز', colors: { light: '#eaf4ea', shadow: '#d5e8d5', dot: '#b3d4b3', highlight: '#ffffff' } },
   { id: 'blue', hex: '#a8c0cb', name: 'آبی', colors: { light: '#eaf1f4', shadow: '#d5e2e8', dot: '#b3cdd4', highlight: '#ffffff' } },

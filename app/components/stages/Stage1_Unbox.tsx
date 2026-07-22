@@ -59,7 +59,7 @@ export default function Stage1_Unbox() {
             </motion.div>
           )}
         </motion.div>
-        
+        <div className={styles.bottleNeck}></div>
         <div className={styles.bucket}>
           <svg className={styles.powderSvg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150' preserveAspectRatio='none'>
             <defs>

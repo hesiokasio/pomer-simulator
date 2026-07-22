@@ -183,7 +183,7 @@ export default function Stage3_Mix() {
             </motion.div>
           )}
         </AnimatePresence>
-
+        <div className={styles.bottleNeck}></div>
         <div className={styles.bucket}>
           <div className={styles.mixedPaste} style={{ opacity: pasteOpacity }}>
             <svg className={styles.pasteSvg} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150' preserveAspectRatio='none'>
