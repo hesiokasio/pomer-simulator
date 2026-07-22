@@ -258,6 +258,7 @@ export default function Stage3_Mix() {
           <div className={styles.gripLine} />
           <div className={styles.gripLine} />
         </motion.div>
+        <div className={styles.glassOverlay}></div>
       </div>
 
       <div className={styles.progressContainer}>

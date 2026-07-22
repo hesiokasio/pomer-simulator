@@ -22,7 +22,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-         پودر بندکشی و چسب کاشی پومر
+         پودر بندکشی و چسب کاشی پرومر
         </motion.h1>
         
         <motion.h2 
@@ -40,7 +40,7 @@ export default function HeroSection() {
           transition={{ delay: 0.8, duration: 0.5 }}
         >
           <Link href="/#cta" className={styles.btnPrimary}>
-             خرید پکیج پومر
+             خرید پکیج پرومر
           </Link>
           <Link href="/tutorial" className={styles.btnSecondary}>
             شبیه‌ساز آموزش اجرا
@@ -56,7 +56,7 @@ export default function HeroSection() {
       >
         <Image 
           src="/illustration.png" 
-          alt="پکیج ترمیم درز کاشی و خمیر بندکشی پومر"
+          alt="پکیج ترمیم درز کاشی و خمیر بندکشی پرومر"
           width={650} 
           height={650} 
           className={styles.heroIllustration}

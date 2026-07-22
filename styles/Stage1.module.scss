@@ -8,7 +8,8 @@
     min-height: calc(100dvh - 80px);
   }
   
-  overflow: hidden; 
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: transparent;
 }
 
@@ -112,7 +113,25 @@
   width: 200px;
   height: 55px;
   
-  background: linear-gradient(180deg, #8a8a8a 0%, #666666 40%, #474747 80%, #333333 100%);
+  background: 
+    linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 47px,
+      rgba(200, 200, 200, 0.6) 47px,
+      rgba(255, 255, 255, 0.2) 48px,
+      #494949 48px,
+      #7d7d7d 50px,
+      rgba(0, 0, 0, 0.5) 50px,
+      rgba(0, 0, 0, 0.1) 51px,
+      transparent 52px,
+      transparent 100px
+    ),
+    linear-gradient(180deg, #8a8a8a 0%, #666666 40%, #474747 80%, #333333 100%);
+    
+  background-size: 100px 24px, 100% 100%;
+  background-position: 0 50%, 0 0;
+  background-repeat: repeat-x, repeat-x;
   border-radius: 12px 12px 2px 2px;
   
   box-shadow: 

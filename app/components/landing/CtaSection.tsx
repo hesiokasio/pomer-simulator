@@ -27,7 +27,7 @@ export default function CtaSection() {
             زمان نوسازی رسیده
           </motion.h2>
           <p className={styles.subtitle}>
-            پومر همه چیز را برای ترمیم سریع و آسان کاشی و سرامیک در اختیار شما قرار می‌دهد
+            پرومر همه چیز را برای ترمیم سریع و آسان کاشی و سرامیک در اختیار شما قرار می‌دهد
           </p>
           
           <motion.div 
@@ -37,7 +37,7 @@ export default function CtaSection() {
             transition={{ delay: 0.8, duration: 0.5 }}
           >
             <a 
-              href="https://wa.me/989043719109?text=سلام،%20من%20از%20سایت%20پومر%20پیام%20می‌دم%20و%20قصد%20سفارش%20دارم." 
+              href="https://wa.me/989043719109?text=سلام،%20من%20از%20سایت%20پرومر%20پیام%20می‌دم%20و%20قصد%20سفارش%20دارم." 
               target="_blank" 
               rel="noopener noreferrer"
               className={styles.btnPrimary}
@@ -50,7 +50,7 @@ export default function CtaSection() {
             </a>
 
             <a 
-              href="tel:+989120000000" 
+              href="tel:+989043719104" 
               className={styles.btnSecondary}
               style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}
             >

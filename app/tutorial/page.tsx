@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useSimulatorStore } from '@/store/useSimulatorStore';
 import { AnimatePresence, motion } from 'framer-motion';
 import Stage1_Unbox from '@/app/components/stages/Stage1_Unbox';
@@ -9,6 +10,11 @@ import Stage4_Apply from '@/app/components/stages/Stage4_Apply';
 
 export default function SimulatorPage() {
   const currentStage = useSimulatorStore((state) => state.currentStage);
+  const resetSimulator = useSimulatorStore((state) => state.resetSimulator);
+
+  useEffect(() => {
+    resetSimulator();
+  }, [resetSimulator]);
 
   return (
     <div style={{ 
@@ -22,7 +28,6 @@ export default function SimulatorPage() {
     }}>
       <AnimatePresence mode="wait">
         
-        {/* پرده اول */}
         {currentStage === 1 && (
           <motion.div
             key="stage1"
@@ -35,7 +40,6 @@ export default function SimulatorPage() {
           </motion.div>
         )}
 
-        {/* پرده دوم */}
         {currentStage === 2 && (
           <motion.div
             key="stage2"
@@ -48,7 +52,6 @@ export default function SimulatorPage() {
           </motion.div>
         )}
 
-        {/* پرده سوم */}
         {currentStage === 3 && (
           <motion.div
             key="stage3"
@@ -61,7 +64,6 @@ export default function SimulatorPage() {
           </motion.div>
         )}
 
-        {/* پرده چهارم */}
         {currentStage === 4 && (
           <motion.div
             key="stage4"

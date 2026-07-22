@@ -12,8 +12,11 @@ const vazirmatn = Vazirmatn({
 });
 
 export const metadata = {
-  title: 'POMER | پومر',
+  title: 'promer | پرومر',
   description: 'نسل جدید ترمیم درز کاشی',
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

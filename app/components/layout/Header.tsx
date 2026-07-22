@@ -33,8 +33,8 @@ export default function Header() {
         
         <Link href="/" className={styles.logo}>
           <Image 
-            src="/pomer-light.svg" 
-            alt="لوگوی پومر" 
+            src="/logo-dark.svg" 
+            alt="لوگوی پرومر" 
             width={120} 
             height={40} 
             priority 

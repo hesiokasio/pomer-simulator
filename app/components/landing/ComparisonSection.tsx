@@ -11,7 +11,7 @@ const traditionalPoints = [
   "کاهش مقاومت در برابر شوینده‌های شیمیایی"
 ];
 
-const pomerPoints = [
+const promerPoints = [
   "اجرای سریع و آسان توسط خود شما",
   "پکیج کامل بدون نیاز به ابزار جانبی و کثیف‌کاری",
   "مقاومت ۱۰۰٪ در برابر نفوذ آب، رطوبت و قارچ",
@@ -50,16 +50,16 @@ export default function ComparisonSection() {
         <div className={styles.cardsWrapper}>
           
           <motion.div 
-            className={`${styles.card} ${styles.cardPomer}`}
+            className={`${styles.card} ${styles.cardpromer}`}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7 }}
           >
             <div className={styles.badge}>راه‌حل هوشمندانه</div>
-            <h3>راه‌حل پومر (راحتی مطلق)</h3>
+            <h3>راه‌حل پرومر (راحتی مطلق)</h3>
             <div>
-              {pomerPoints.map((point, index) => (
+              {promerPoints.map((point, index) => (
                 <div key={index} className={styles.listItem}>
                   <div className={`${styles.iconBox} ${styles.iconBoxGold}`}>
                     <CheckIcon />

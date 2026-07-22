@@ -33,7 +33,7 @@ export default function Stage1_Unbox() {
     <div className={styles.stageContainer}>
       <div className={styles.textWrap}>
         <h2 className={styles.title}>شروع یک اجرای تمیز و راحت!</h2>
-        <p className={styles.subtitle}>برای باز کردن پومر، یک بار روی در بکشید</p>
+        <p className={styles.subtitle}>برای باز کردن پرومر، یک بار روی در بکشید</p>
       </div>
       
       <div className={styles.bucketWrapper}>

@@ -178,25 +178,33 @@
   width: 240px; 
   height: 220px;
   border-radius: 25px 25px 30px 30px;
-  background: rgba(240, 248, 255, 0.15); 
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  
-  box-shadow: 
-    inset 25px 0 45px rgba(255, 255, 255, 0.95),
-    inset -15px -25px 40px rgba(0, 0, 0, 0.12),
-    inset 0 0 15px rgba(255, 255, 255, 0.4),
-    0 25px 45px rgba(0, 0, 0, 0.08);
-    
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-top: none;
-  
   position: absolute;
   bottom: 0;
   z-index: 1;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+}
+
+.glassOverlay {
+  width: 240px; 
+  height: 220px;
+  border-radius: 25px 25px 30px 30px;
+  background: rgba(240, 248, 255, 0.15); 
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 
+    inset 25px 0 45px rgba(255, 255, 255, 0.95),
+    inset -15px -25px 40px rgba(0, 0, 0, 0.12),
+    inset 0 0 15px rgba(255, 255, 255, 0.4),
+    0 25px 45px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-top: none;
+  
+  position: absolute;
+  bottom: 0;
+  z-index: 20;
+  pointer-events: none;
 
   &::after {
     content: '';
@@ -205,18 +213,14 @@
     bottom: 5px; 
     left: 8%; 
     width: 45px;
-    
     background: linear-gradient(
       90deg, 
       rgba(255, 255, 255, 1) 0%, 
       rgba(255, 255, 255, 0.5) 40%, 
       transparent 100%
     );
-    
     border-radius: 10px;
-    
     filter: blur(1.5px);
-    
     z-index: 10;
     pointer-events: none;
     transform: skewX(-1deg);
@@ -250,7 +254,8 @@
   border-right: 1px solid rgba(255, 255, 255, 0.6);
   border-top: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 6px 6px 0 0;
-  z-index: 1; 
+  z-index: 30 !important; 
+  pointer-events: none;
 }
 
 .rawIngredients {
@@ -291,7 +296,7 @@
   width: 100%;
   height: 80%; 
   z-index: 3;
-  border-radius: 0 0 40px 40px; 
+  border-radius: 0 0 30px 30px; 
   overflow: hidden; 
 }
 
@@ -315,7 +320,7 @@
 
 .mixerTool {
   position: absolute;
-  top: 0px; 
+  top: -30px; 
   width: 32px; 
   height: 190px; 
   background-color: #d1a373; 

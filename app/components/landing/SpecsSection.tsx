@@ -34,7 +34,7 @@ export default function SpecsSection() {
           transition={{ duration: 0.7 }}
         >
           <span className={styles.subtitle}>دقیق و مهندسی‌شده</span>
-          <h2 className={styles.title}>مشخصات فنی پومر</h2>
+          <h2 className={styles.title}>مشخصات فنی پرومر</h2>
         </motion.div>
 
         <div className={styles.content}>
