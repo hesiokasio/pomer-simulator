@@ -14,6 +14,7 @@ export default function SchemaMarkup() {
         "offers": {
           "@type": "Offer",
           "priceCurrency": "IRR",
+          "price": "0",
           "availability": "https://schema.org/InStock"
         }
       },
