@@ -13,7 +13,7 @@ export default function SchemaMarkup() {
         },
         "offers": {
           "@type": "Offer",
-          "priceCurrency": "IRT",
+          "priceCurrency": "IRR",
           "availability": "https://schema.org/InStock"
         }
       },
