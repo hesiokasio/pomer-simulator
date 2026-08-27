@@ -7,17 +7,26 @@ import { useSimulatorStore } from '@/store/useSimulatorStore';
 import styles from '@/styles/Stage2.module.scss';
 
 export default function Stage2_AddWater() {
-const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulatorStore();
+  const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulatorStore();
   
   const [isPouring, setIsPouring] = useState(false);
   const [streamVisible, setStreamVisible] = useState(false);
   
+  const [displayScoops, setDisplayScoops] = useState(waterScoops);
+  
   const [waterLevel, setWaterLevel] = useState(() => {
     if (waterScoops === 1) return '7%';
     if (waterScoops === 2) return '14%';
-    if (waterScoops >= 3) return '20%';
+    if (waterScoops === 3) return '20%';
+    if (waterScoops >= 4) return '27%';
     return '0%';
   });
+
+  useEffect(() => {
+    if (waterScoops > displayScoops) {
+      setDisplayScoops(waterScoops);
+    }
+  }, [waterScoops, displayScoops]);
 
   const cupControls = useAnimation();
   const waterLevelControls = useAnimation();
@@ -33,9 +42,9 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
   useEffect(() => {
     let isMounted = true;
     const playIdleAnimation = async () => {
-      while (isMounted && !isPouring && waterScoops < 3) {
+      while (isMounted && !isPouring && displayScoops < 4) {
         await new Promise(resolve => setTimeout(resolve, 2000));
-        if (!isMounted || isPouring || waterScoops >= 3) break;
+        if (!isMounted || isPouring || displayScoops >= 4) break;
         await cupControls.start({ 
           rotate: [0, -8, 6, -3, 0], 
           transition: { duration: 0.5, ease: "easeInOut" } 
@@ -44,17 +53,16 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
     };
     playIdleAnimation();
     return () => { isMounted = false; };
-  }, [isPouring, waterScoops, cupControls]);
-
+  }, [isPouring, displayScoops, cupControls]);
   useEffect(() => {
-    if (waterScoops >= 3) {
-      const timer = setTimeout(() => { nextStage(); }, 300); 
+    if (displayScoops >= 4 && !isPouring) {
+      const timer = setTimeout(() => { nextStage(); }, 1000); 
       return () => clearTimeout(timer);
     }
-  }, [waterScoops, nextStage]);
+  }, [displayScoops, isPouring, nextStage]);
 
   const handleTap = async () => {
-    if (isPouring || waterScoops >= 3) return;
+    if (isPouring || displayScoops >= 4) return;
     setIsPouring(true);
     cupControls.stop();
 
@@ -73,10 +81,13 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
     }, 150);
 
     setTimeout(() => {
-      const nextScoop = waterScoops + 1;
+      const nextScoop = displayScoops + 1;
+      setDisplayScoops(nextScoop); 
+
       if (nextScoop === 1) setWaterLevel('7%');
       else if (nextScoop === 2) setWaterLevel('14%');
-      else if (nextScoop >= 3) setWaterLevel('20%');
+      else if (nextScoop === 3) setWaterLevel('20%');
+      else if (nextScoop >= 4) setWaterLevel('27%');
     }, 450); 
 
     await new Promise(resolve => setTimeout(resolve, 1100));
@@ -87,7 +98,7 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
       transition: { type: "spring", stiffness: 100, damping: 15 } 
     });
 
-    if (waterScoops < 2) {
+    if (displayScoops < 3) {
       waterLevelControls.set({ 
         height: '0%', y: 0, x: 0, scaleX: 1, scaleY: 1,
         borderRadius: '0 0 14px 14px', opacity: 1, originX: 0.5, originY: 1
@@ -97,7 +108,7 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
       });
     }
 
-    addWater();
+    addWater(); 
     setIsPouring(false);
   };
 
@@ -124,12 +135,11 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
         </svg>
       </button>
 
-
       <div className={styles.textWrap}>
         <h2 className={styles.title}>اضافه کردن آب</h2>
         <p className={styles.subtitle}>
-          به ۳ پیمانه آب نیاز داریم. ۳ بار روی لیوان ضربه بزن تا آب اضافه شود.
-          (پیمانه فعلی: {waterScoops}/3)
+          به ۴ پیمانه آب نیاز داریم. ۴ بار روی لیوان ضربه بزن تا آب اضافه شود.
+          (پیمانه فعلی: {displayScoops}/4)
         </p>
       </div>
       
@@ -138,9 +148,9 @@ const { activeTheme, waterScoops, addWater, nextStage, prevStage } = useSimulato
           className={styles.cupContainer}
           onClick={handleTap}
           animate={cupControls}
-          whileHover={!isPouring && waterScoops < 3 ? { scale: 1.05 } : {}}
-          whileTap={!isPouring && waterScoops < 3 ? { scale: 0.95 } : {}}
-          disabled={waterScoops >= 3 || isPouring}
+          whileHover={!isPouring && displayScoops < 4 ? { scale: 1.05 } : {}}
+          whileTap={!isPouring && displayScoops < 4 ? { scale: 0.95 } : {}}
+          disabled={displayScoops >= 4 || isPouring}
         >
           <motion.div 
              className={styles.waterInside} 
